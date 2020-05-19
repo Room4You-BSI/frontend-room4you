@@ -1,0 +1,73 @@
+version: 2.1
+
+jobs:
+  version: 2.1
+
+references:
+  default_node_container: &default_node_container
+    docker:
+      - image: "circleci/node:10.15.3-browsers"
+    working_directory: ~/repo
+
+
+commands:
+  npm_install_cm:
+    description: "Install all dependencies using npm. This try to use cached packages"
+    steps:
+      - restore_cache:
+          key: v1-dependencies-{{checksum "package.json"}}
+      - run: "npm install"
+      - save_cache:
+          key: v1-dependencies-{{checksum "package.json"}}
+          paths:
+            - node_modules
+
+
+jobs:
+  lint:
+    <<: *default_node_container
+    steps:
+      - checkout
+      - npm_install_cm
+      - run: "npm run lint"
+
+  build-dev:
+    <<: *default_node_container
+    steps:
+      - checkout
+      - npm_install_cm
+      - run: "npm run build"
+
+  build-prod:
+    <<: *default_node_container
+    steps:
+      - checkout
+      - npm_install_cm
+      - run: "npm run build --prod"
+
+  test-app:
+    <<: *default_node_container
+    steps:
+      - checkout
+      - npm_install_cm
+      - run: npm run test -- --no-watch --no-progress --browsers=ChromeHeadlessCI
+
+
+workflows:
+  version: 2.1
+
+  build:
+    jobs:
+      - lint
+
+      - build-dev:
+          requires:
+            - lint
+
+      - build-prod:
+          requires:
+            - build-dev
+
+      - test-app:
+          requires:
+            - build-prod
