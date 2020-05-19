@@ -1,8 +1,5 @@
 version: 2.1
 
-jobs:
-  version: 2.1
-
 references:
   default_node_container: &default_node_container
     docker:
