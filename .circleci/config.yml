@@ -6,6 +6,26 @@ references:
       - image: "circleci/node:10.15.3-browsers"
     working_directory: ~/repo
 
+  default_python_container_config: &default_python_container_config
+    docker:
+      - image: "circleci/python:2.7-jessie"
+    working_directory: "~/project"
+
+  default_attach_workspace: &default_attach_workspace
+    attach_workspace:
+      at: .
+
+  install_aws_cli: &install_aws_cli
+    run:
+      name: Install awscli
+      command: sudo pip install awscli
+
+  filter_only_dev: &filter_only_dev
+    filters:
+      branches:
+        only:
+          - dev
+
 
 commands:
   npm_install_cm:
@@ -33,7 +53,13 @@ jobs:
     steps:
       - checkout
       - npm_install_cm
-      - run: "npm run build"
+      - run: "npm run build -- --configuration=dev"
+
+      # armazena os arquivos gerados no build para uso futuro
+      - persist_to_workspace:
+          root: .
+          paths:
+            - dist
 
   build-prod:
     <<: *default_node_container
@@ -48,6 +74,25 @@ jobs:
       - checkout
       - npm_install_cm
       - run: npm run test -- --no-watch --no-progress --browsers=ChromeHeadlessCI
+
+  deploy-dev:
+    <<: *default_python_container_config
+    steps:
+      - *default_attach_workspace
+      - *install_aws_cli
+      - run:
+          name: Configure credentials for DEV environment
+          command: |
+            echo "export AWS_ACCESS_KEY_ID=$DEV_AWS_ACCESS_KEY_ID" >> $BASH_ENV
+            echo "export AWS_SECRET_ACCESS_KEY=$DEV_AWS_SECRET_ACCESS_KEY" >> $BASH_ENV
+            source $BASH_ENV
+      - run:
+          name: Remove everything that is in the bucket
+          command: aws s3 rm s3://dev-room4you.frontend --recursive
+      - run:
+          name: Put new deployment in bucket
+          command: aws s3 cp dist/room4you s3://dev-room4you.frontend/ --recursive
+
 
 workflows:
   version: 2.1
@@ -67,3 +112,8 @@ workflows:
       - test-app:
           requires:
             - build-prod
+
+      - deploy-dev:
+          <<: *filter_only_dev
+          requires:
+            - test-app
