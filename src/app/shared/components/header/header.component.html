@@ -7,7 +7,7 @@
 
       <!-- MENU BUTTON TOGGLE -->
       <button *ngIf="downMdSize" mat-icon-button [matMenuTriggerFor]="appMenu">
-        <mat-icon class="menu-toggler cursor-poiter" aria-hidden="false" aria-label="Menu toggler">
+        <mat-icon class="menu-toggler cursor-pointer" aria-hidden="false" aria-label="Menu toggler">
           dehaze
         </mat-icon>
       </button>
@@ -17,7 +17,8 @@
         <button *ngFor="let item of menuItems" [routerLink]="item.link" mat-menu-item>{{ item.text }}</button>
       </mat-menu>
 
-      <div [ngClass]="downMdSize ? 'title-mobile' : 'mat-display-1'" class="r4u-mb-0">Room4You</div>
+      <!-- TITLE -->
+      <div routerLink="/home" [ngClass]="downMdSize ? 'title-mobile' : 'mat-display-1'" class="r4u-mb-0 cursor-pointer outline-none">Room4You</div>
     </mat-grid-tile>
 
     <!-- Search form block -->
@@ -33,7 +34,7 @@
     <!-- Menu block -->
     <mat-grid-tile *ngIf="!downMdSize" [colspan]="onlyMdSize ? 14 : 6">
       <div id="desk-menu-wrapper">
-        <a mat-button *ngFor="let item of menuItems" [routerLink]="item.link">{{ item.text }}</a>
+        <a mat-button routerLinkActive="active-link" *ngFor="let item of menuItems" [routerLink]="item.link">{{ item.text }}</a>
       </div>
     </mat-grid-tile>
   </mat-grid-list>

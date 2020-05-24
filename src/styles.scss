@@ -38,10 +38,14 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 @import "./sass/spacing.scss";
 
-.cursor-poiter {
+.cursor-pointer {
   cursor: pointer;
 }
 
 #header-toolbar .mat-grid-tile .mat-figure {
   justify-content: normal;
+}
+
+.outline-none {
+  outline: none;
 }
