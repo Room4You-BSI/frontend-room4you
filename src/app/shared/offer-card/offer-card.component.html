@@ -1,0 +1,69 @@
+<div class="card-content-wrapper">
+  <div>
+    <div class="card-image" [ngStyle]="{ 'background-image': 'url(' + image + ')'}"></div>
+    <h3 class="card-inner-title">{{ title }}</h3>
+    <p>{{ text }}</p>
+    <div class="card-content-icons-wrapper">
+
+      <!-- ICONS COLUMNS -->
+      <div class="card-content-icons-column">
+        <ng-container *ngFor="let attr of attributesColumn1; let last = last">
+          <div>
+            <mat-icon
+              [class.available]="attr.available"
+              fontSet="material-icons-outlined"
+              aria-hidden="false"
+              aria-label="Location pin"
+            >
+              check_circle
+            </mat-icon>
+            <p>{{ attr.label }}</p>
+          </div>
+
+          <div *ngIf="!last" class="r4u-clearfix"></div>
+        </ng-container>
+      </div>
+
+      <!-- ICONS COLUMNS -->
+      <div class="card-content-icons-column">
+        <ng-container *ngFor="let attr of attributesColumn2; let last = last">
+          <div>
+            <mat-icon
+              [class.available]="attr.available"
+              fontSet="material-icons-outlined"
+              aria-hidden="false"
+              aria-label="Location pin"
+            >
+              check_circle
+            </mat-icon>
+            <p>{{ attr.label }}</p>
+          </div>
+
+          <div *ngIf="!last" class="r4u-clearfix"></div>
+        </ng-container>
+      </div>
+
+      <!-- ICONS COLUMNS -->
+      <div class="card-content-icons-column">
+        <div>
+          <mat-icon fontSet="material-icons-outlined" class="place" aria-hidden="false" aria-label="Location pin">place</mat-icon>
+          <p>{{ distance }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="rate-price-bloock">
+  <div class="icons-wrapper">
+    <ng-container *ngFor="let i of [0, 1, 2, 3, 4]">
+      <mat-icon class="cursor-pointer" (click)="rate = i + 1" [class.rated]="rate > i" aria-hidden="false" aria-label="Rate star">grade</mat-icon>
+    </ng-container>
+
+    <mat-icon (click)="favorite = !favorite" class="cursor-pointer rated-favorite" aria-hidden="false" aria-label="Favorite">{{favorite ? 'favorite' : 'favorite_border'}}</mat-icon>
+  </div>
+  <div class="price-wrapper">
+    <p>R$ {{ price }}</p>
+    <p>Mensais</p>
+  </div>
+</div>
+<div class="r4u-clearfix"></div>

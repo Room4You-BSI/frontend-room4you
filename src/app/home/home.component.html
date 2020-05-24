@@ -1,1 +1,15 @@
-<app-header></app-header>
+<mat-card class="item-card">
+  <div *ngFor="let card of offerCards; let last = last" class="offer-card-item" [class.last]="last">
+    <app-offer-card
+      [title]="card.title"
+      [text]="card.text"
+      [image]="card.image"
+      [price]="card.price"
+      [rate]="card.rate"
+      [distance]="card.distance"
+      [favorite]="card.favorite"
+      [attributesColumn1]="card.attributesColumn1"
+      [attributesColumn2]="card.attributesColumn2"
+    ></app-offer-card>
+  </div>
+</mat-card>
