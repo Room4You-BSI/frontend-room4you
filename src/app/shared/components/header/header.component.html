@@ -1,0 +1,40 @@
+<mat-toolbar color="primary" id="header-toolbar">
+  <mat-grid-list cols="24" [rowHeight]="downMdSize ? '45px' : '70px'">
+    <mat-grid-tile *ngIf="!downMdSize" colspan="3"></mat-grid-tile>
+
+    <!-- Title block -->
+    <mat-grid-tile [colspan]="onlyMdSize ? 5 : downMdSize ? 15 : 4">
+
+      <!-- MENU BUTTON TOGGLE -->
+      <button *ngIf="downMdSize" mat-icon-button [matMenuTriggerFor]="appMenu">
+        <mat-icon class="menu-toggler cursor-poiter" aria-hidden="false" aria-label="Menu toggler">
+          dehaze
+        </mat-icon>
+      </button>
+
+      <!-- MENU -->
+      <mat-menu [hidden]="!downMdSize" #appMenu="matMenu">
+        <button *ngFor="let item of menuItems" [routerLink]="item.link" mat-menu-item>{{ item.text }}</button>
+      </mat-menu>
+
+      <div [ngClass]="downMdSize ? 'title-mobile' : 'mat-display-1'" class="r4u-mb-0">Room4You</div>
+    </mat-grid-tile>
+
+    <!-- Search form block -->
+    <mat-grid-tile *ngIf="!downMdSize && !onlyMdSize" colspan="6">
+      <div id="search-input-wrapper" class="r4u-w-100">
+        <input type="text" placeholder="Pesquise aqui">
+        <mat-icon aria-hidden="false" aria-label="Search icon">search</mat-icon>
+      </div>
+    </mat-grid-tile>
+
+    <mat-grid-tile *ngIf="!downMdSize && !onlyMdSize" colspan="2"></mat-grid-tile>
+
+    <!-- Menu block -->
+    <mat-grid-tile *ngIf="!downMdSize" [colspan]="onlyMdSize ? 14 : 6">
+      <div id="desk-menu-wrapper">
+        <a mat-button *ngFor="let item of menuItems" [routerLink]="item.link">{{ item.text }}</a>
+      </div>
+    </mat-grid-tile>
+  </mat-grid-list>
+</mat-toolbar>
