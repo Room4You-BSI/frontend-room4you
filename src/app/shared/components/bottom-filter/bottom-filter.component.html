@@ -1,0 +1,110 @@
+<mat-accordion class="outer-exand">
+  <mat-expansion-panel [expanded]="expand" (closed)="expand = false" (opened)="expand = true" hideToggle>
+    <mat-expansion-panel-header class="outer-panel-header">
+      <mat-panel-title class="outer-panel-title">
+        Filtrar
+        <mat-icon *ngIf="!expand">arrow_drop_up</mat-icon>
+        <mat-icon *ngIf="expand">arrow_drop_down</mat-icon>
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+
+    <div class="price-filter-wrapper">
+      <mat-icon>local_atm</mat-icon>
+      <span>Preço</span>
+      <mat-form-field class="price-from">
+        <mat-label>De</mat-label>
+        <input matInput type="number" min="1">
+      </mat-form-field>
+
+      <mat-form-field class="price-to">
+        <mat-label>Até</mat-label>
+        <input matInput type="number" min="1">
+      </mat-form-field>
+    </div>
+
+    <mat-accordion class="example-headers-align">
+      <mat-expansion-panel class="inner-expansion-panel" [expanded]="expand2" (closed)="expand2 = false" (opened)="openItem('expand2')" hideToggle>
+        <mat-expansion-panel-header>
+          <mat-panel-title class="inner-panel-title">
+            <mat-icon>access_time</mat-icon>
+            Tempo de estadia
+            <mat-icon class="arrow" *ngIf="!expand2">arrow_drop_up</mat-icon>
+            <mat-icon class="arrow" *ngIf="expand2">arrow_drop_down</mat-icon>
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+
+        <!-- CONTENT -->
+        <p>1 mês</p>
+        <p>2 meses</p>
+        <p>3 meses</p>
+        <p>4 meses</p>
+        <p>5 meses</p>
+        <p>6 meses</p>
+        <p>1 ano</p>
+
+      </mat-expansion-panel>
+    </mat-accordion>
+
+    <mat-accordion class="example-headers-align">
+      <mat-expansion-panel class="inner-expansion-panel" [expanded]="expand3" (closed)="expand3 = false" (opened)="openItem('expand3')" hideToggle>
+        <mat-expansion-panel-header>
+          <mat-panel-title class="inner-panel-title">
+            <mat-icon>fastfood</mat-icon>
+            Comida
+            <mat-icon class="arrow" *ngIf="!expand3">arrow_drop_up</mat-icon>
+            <mat-icon class="arrow" *ngIf="expand3">arrow_drop_down</mat-icon>
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+
+        <!-- CONTENT -->
+        <div class="options-wrapper">
+          <mat-checkbox>Café da manhã</mat-checkbox>
+          <mat-checkbox>Almoço</mat-checkbox>
+          <mat-checkbox>Jantar</mat-checkbox>
+          <mat-checkbox>Uso da cozinha</mat-checkbox>
+        </div>
+
+      </mat-expansion-panel>
+    </mat-accordion>
+
+    <mat-accordion class="example-headers-align">
+      <mat-expansion-panel class="inner-expansion-panel" [expanded]="expand4" (closed)="expand4 = false" (opened)="openItem('expand4')" hideToggle>
+        <mat-expansion-panel-header>
+          <mat-panel-title class="inner-panel-title">
+            <mat-icon>local_hotel</mat-icon>
+            Quarto
+            <mat-icon class="arrow" *ngIf="!expand4">arrow_drop_up</mat-icon>
+            <mat-icon class="arrow" *ngIf="expand4">arrow_drop_down</mat-icon>
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+
+        <div class="options-wrapper">
+          <mat-checkbox>Suíte</mat-checkbox>
+          <mat-checkbox>Ventilador</mat-checkbox>
+          <mat-checkbox>Ar-condicionado</mat-checkbox>
+          <mat-checkbox>TV</mat-checkbox>
+        </div>
+
+      </mat-expansion-panel>
+    </mat-accordion>
+
+    <mat-accordion class="example-headers-align">
+      <mat-expansion-panel class="inner-expansion-panel" [expanded]="expand5" (closed)="expand5 = false" (opened)="openItem('expand5')" hideToggle>
+        <mat-expansion-panel-header>
+          <mat-panel-title class="inner-panel-title">
+            <mat-icon>wifi</mat-icon>
+            Comodidades
+            <mat-icon class="arrow" *ngIf="!expand5">arrow_drop_up</mat-icon>
+            <mat-icon class="arrow" *ngIf="expand5">arrow_drop_down</mat-icon>
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+
+        <div class="options-wrapper">
+          <mat-checkbox>Opção 1</mat-checkbox>
+          <mat-checkbox>Opção 2</mat-checkbox>
+        </div>
+
+      </mat-expansion-panel>
+    </mat-accordion>
+  </mat-expansion-panel>
+</mat-accordion>

@@ -1,7 +1,24 @@
-<div class="card-content-wrapper">
+<div class="card-content-wrapper"
+  [class.size1000to1300]="size1000to1300"
+  [class.sizeLT1000]="sizeLT1000"
+  [class.sizeLT800]="sizeLT800"
+>
   <div>
-    <div class="card-image" [ngStyle]="{ 'background-image': 'url(' + image + ')'}"></div>
+    <div class="card-image" [ngStyle]="{ 'background-image': 'url(' + image + ')'}">
+      <span *ngIf="sizeLT800">R$ {{ price }}/mês</span>
+    </div>
+
+    <div *ngIf="sizeLT1000" class="r4u-clearfix"></div>
     <h3 class="card-inner-title">{{ title }}</h3>
+
+    <ng-container *ngIf="sizeLT800">
+      <ng-container *ngFor="let i of [0, 1, 2, 3, 4]">
+        <mat-icon class="cursor-pointer rate-icon" (click)="rate = i + 1" [class.rated]="rate > i" aria-hidden="false" aria-label="Rate star">grade</mat-icon>
+      </ng-container>
+
+      <mat-icon (click)="favorite = !favorite" class="cursor-pointer rated-favorite rate-icon under-title" aria-hidden="false" aria-label="Favorite">{{favorite ? 'favorite' : 'favorite_border'}}</mat-icon>
+    </ng-container>
+
     <p>{{ text }}</p>
     <div class="card-content-icons-wrapper">
 
@@ -53,13 +70,13 @@
     </div>
   </div>
 </div>
-<div class="rate-price-bloock">
+<div class="rate-price-bloock" [class.sizeLT800]="sizeLT800">
   <div class="icons-wrapper">
     <ng-container *ngFor="let i of [0, 1, 2, 3, 4]">
-      <mat-icon class="cursor-pointer" (click)="rate = i + 1" [class.rated]="rate > i" aria-hidden="false" aria-label="Rate star">grade</mat-icon>
+      <mat-icon class="cursor-pointer rate-icon" (click)="rate = i + 1" [class.rated]="rate > i" aria-hidden="false" aria-label="Rate star">grade</mat-icon>
     </ng-container>
 
-    <mat-icon (click)="favorite = !favorite" class="cursor-pointer rated-favorite" aria-hidden="false" aria-label="Favorite">{{favorite ? 'favorite' : 'favorite_border'}}</mat-icon>
+    <mat-icon (click)="favorite = !favorite" class="cursor-pointer rated-favorite rate-icon" aria-hidden="false" aria-label="Favorite">{{favorite ? 'favorite' : 'favorite_border'}}</mat-icon>
   </div>
   <div class="price-wrapper">
     <p>R$ {{ price }}</p>
