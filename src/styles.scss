@@ -36,7 +36,8 @@ $room4you-theme: mat-light-theme($room4you-primary, $room4you-accent, $room4you-
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
-@import "./sass/spacing.scss";
+@import "./sass/spacing";
+@import "./sass/custom-colors";
 
 .cursor-pointer {
   cursor: pointer;
@@ -48,4 +49,12 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 .outline-none {
   outline: none;
+}
+
+.r4u-clearfix {
+  clear: both;
+}
+
+.mat-checkbox-frame {
+  border-color: $r4u-green;
 }
