@@ -41,6 +41,17 @@ mat-toolbar-multiple-rows {
 
 mat-toolbar {
   display: block;
+  position: fixed;
+  top: 0;
+  z-index: 999;
+}
+
+.fake-position-holder {
+  height: 60px;
+
+  &size-lg {
+    height: 70px;
+  }
 }
 
 .menu-toggler {

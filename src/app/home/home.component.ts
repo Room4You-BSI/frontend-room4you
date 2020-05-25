@@ -1,5 +1,8 @@
+import { BreakpointObserver } from '@angular/cdk/layout';
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
+
+import { tap } from 'rxjs/operators';
 
 import { OfferCardItemModel } from '@shared/models';
 
@@ -78,9 +81,25 @@ export class HomeComponent implements OnInit {
     {label: '1 ano', value: '12'},
   ];
 
-  constructor() {}
+  private readonly sizeLT800Txt = '(max-width: 799.99px)';
+  sizeLT800 = false;
 
-  ngOnInit() {}
+  private readonly sizeLT600Txt = '(max-width: 599.99px)';
+  sizeLT600 = false;
+
+  constructor(
+    private breakpointObserver: BreakpointObserver,
+  ) {}
+
+  ngOnInit() {
+    this.breakpointObserver.observe([
+      this.sizeLT800Txt,
+      this.sizeLT600Txt,
+    ]).pipe(tap(result => {
+      this.sizeLT800 = result.breakpoints[this.sizeLT800Txt];
+      this.sizeLT600 = result.breakpoints[this.sizeLT600Txt];
+    })).subscribe();
+  }
 
   checkPriceInputValues(controlFrom: FormControl, controlTo: FormControl) {
     if (controlTo.value < controlFrom.value) {

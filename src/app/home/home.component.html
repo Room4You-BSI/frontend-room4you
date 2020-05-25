@@ -1,7 +1,7 @@
-<div id="main-container">
+<div id="main-container" [class.sizeLT800]="sizeLT800" [class.sizeLT600]="sizeLT600">
 
   <!-- FILTER -->
-  <mat-card class="item-card filter-sidebar">
+  <mat-card class="item-card filter-sidebar" *ngIf="!sizeLT600">
     <h2>Filtros</h2>
     <hr class="filter-divider">
 
@@ -9,7 +9,7 @@
     <div class="price-filter-item">
       <mat-form-field>
         <mat-label>De</mat-label>
-        <input matInput type="text" [formControl]="priceFrom" (focusout)="checkPriceInputValues(priceFrom, priceTo)">
+        <input id="priceFrom" matInput type="number" [formControl]="priceFrom" (focusout)="checkPriceInputValues(priceFrom, priceTo)">
         <button mat-button *ngIf="priceFrom.value" matSuffix mat-icon-button aria-label="Clear" (click)="priceFrom.setValue('')">
           <mat-icon>close</mat-icon>
         </button>
@@ -17,7 +17,7 @@
 
       <mat-form-field>
         <mat-label>Até</mat-label>
-        <input matInput type="text" [formControl]="priceTo" (focusout)="checkPriceInputValues(priceFrom, priceTo)">
+        <input id="priceTo" matInput type="number" [formControl]="priceTo" (focusout)="checkPriceInputValues(priceFrom, priceTo)">
         <button mat-button *ngIf="priceTo.value" matSuffix mat-icon-button aria-label="Clear" (click)="priceTo.setValue('')">
           <mat-icon>close</mat-icon>
         </button>
@@ -44,6 +44,9 @@
 
 
   <div class="column2-wrapper">
+
+    <app-bottom-filter [hidden]="!sizeLT600" class="bottom-filter"></app-bottom-filter>
+
     <div class="column2-header">
 
       <!-- BREADCRUMB -->
