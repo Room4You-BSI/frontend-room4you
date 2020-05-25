@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
+
+import { OfferCardItemModel } from '@shared/models';
 
 
 @Component({
@@ -8,7 +11,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  offerCards = [
+  offerCards: OfferCardItemModel[] = [
     {
       title: 'Quarto São Paulo Tatuapé',
       text: `Mussum Ipsum, cacilds vidis litro abertis. Nec orci ornare consequat. Praesent lacinia ultrices
@@ -50,9 +53,50 @@ export class HomeComponent implements OnInit {
     },
   ];
 
-  constructor() { }
+  amenityOptions: {label: string; control: FormControl}[] = [
+    {label: 'Suíte', control: new FormControl(false)},
+    {label: 'Ar', control: new FormControl(false)},
+    {label: 'Ventilador', control: new FormControl(false)},
+    {label: 'TV', control: new FormControl(false)},
+    {label: 'Refeições Inclusas', control: new FormControl(false)},
+    {label: 'Garagem', control: new FormControl(false)},
+    {label: 'PETs', control: new FormControl(false)},
+    {label: 'Mobiliado', control: new FormControl(false)},
+  ];
 
-  ngOnInit() {
+  priceFrom = new FormControl(500);
+  priceTo = new FormControl(700);
+  lengthOfStay = new FormControl(null);
+
+  lengthOfStayList: {label: string; value: string}[] = [
+    {label: '1 mês', value: '1'},
+    {label: '2 meses', value: '2'},
+    {label: '3 meses', value: '3'},
+    {label: '4 meses', value: '4'},
+    {label: '5 meses', value: '5'},
+    {label: '6 meses', value: '6'},
+    {label: '1 ano', value: '12'},
+  ];
+
+  constructor() {}
+
+  ngOnInit() {}
+
+  checkPriceInputValues(controlFrom: FormControl, controlTo: FormControl) {
+    if (controlTo.value < controlFrom.value) {
+      controlTo.setValue(controlFrom.value);
+    }
   }
 
+  sortOfferCars(cards: OfferCardItemModel[]) {
+    // TODO: Ordenar de verdade, por equanto só faz o shuffle
+    let equals = true;
+    const sequenceBefore: string[] = cards.map(card => card.title);
+
+    while (equals) {
+      cards.sort(() => Math.random() - 0.5);
+      const sequenceAfter: string[] = cards.map(card => card.title);
+      equals = sequenceBefore.length === sequenceAfter.length && sequenceBefore.every((value, index) => value === sequenceAfter[index]);
+    }
+  }
 }
