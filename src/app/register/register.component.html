@@ -1,28 +1,28 @@
-<div id="register" class="hide">
-  <div class="content">
+<div id="register">
+  <div class="content" [formGroup]="formUserRegister" (ngSubmit)="onSubmitRegister()">
     <h1>Faça seu cadastro</h1>
 
-    <mat-form-field appearance="fill">
+    <mat-form-field appearance="outline">
       <mat-label>Nome</mat-label>
-      <input matInput type="text">
+      <input matInput type="nome" class="form-control" name="nome" id="nome" formControlName="nome">
     </mat-form-field>
 
-    <mat-form-field appearance="fill">
+    <mat-form-field appearance="outline">
       <mat-label>Senha</mat-label>
-      <input matInput type="password">
+      <input matInput type="password" class="form-control" name="password" id="password" formControlName="password">
     </mat-form-field>
 
-    <mat-form-field appearance="fill">
+    <mat-form-field appearance="outline">
       <mat-label>Confirmar senha</mat-label>
-      <input matInput type="password">
+      <input matInput type="password" class="form-control" name="repassword" id="repassword" formControlName="repassword">
     </mat-form-field>
 
-    <mat-form-field appearance="fill">
+    <mat-form-field appearance="outline">
       <mat-label>Email</mat-label>
-      <input matInput type="email">
+      <input matInput type="email" class="form-control" name="email" id="email" formControlName="email">
     </mat-form-field>
 
-    <button mat-raised-button color="primary">Cadastrar</button>
+    <button mat-raised-button color="primary" type="submit" class="btn btn-primary mt-4" value="Salvar" (click)="onSubmitRegister()">Cadastrar</button>
 
   </div>
 </div>
