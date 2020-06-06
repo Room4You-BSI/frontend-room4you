@@ -1,0 +1,24 @@
+<ng-container *ngIf="lat && lng; else loadingBlock">
+  <agm-map [latitude]="lat" [zoom]="zoom" [longitude]="lng" [styles]="darkStyle">
+    <agm-marker
+      [latitude]="lat"
+      [longitude]="lng"
+      [iconUrl]="mapIcon"
+      (markerClick)="openMessage = true"
+    >
+      <agm-info-window
+        [isOpen]="openMessage"
+        [maxWidth]="250"
+      >
+        <strong>{{ textInfo }}</strong>
+      </agm-info-window>
+    </agm-marker>
+  </agm-map>
+</ng-container>
+
+<ng-template #loadingBlock>
+  <mat-progress-spinner *ngIf="!serviceError; else errorBlock"></mat-progress-spinner>
+  <ng-template #errorBlock>
+    <p>Não foi possível carregar a localização.</p>
+  </ng-template>
+</ng-template>

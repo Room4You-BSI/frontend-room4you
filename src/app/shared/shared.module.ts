@@ -11,14 +11,20 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSelectModule } from '@angular/material/select';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { RouterModule } from '@angular/router';
 
+import { AgmCoreModule } from '@agm/core';
+
+import { environment } from '@environment';
+
 import { BottomFilterComponent } from './components/bottom-filter/bottom-filter.component';
 import { HeaderComponent } from './components/header/header.component';
+import { LightsliderComponent } from './components/lightslider/lightslider.component';
+import { MapComponent } from './components/map/map.component';
 import { OfferCardComponent } from './components/offer-card/offer-card.component';
-import { LightsliderComponent } from './lightslider/lightslider.component';
 
 
 const matModules = [
@@ -34,6 +40,7 @@ const matModules = [
   MatInputModule,
   MatCheckboxModule,
   MatExpansionModule,
+  MatProgressSpinnerModule,
 ];
 
 
@@ -43,11 +50,16 @@ const matModules = [
     OfferCardComponent,
     BottomFilterComponent,
     LightsliderComponent,
+    MapComponent,
   ],
   imports: [
     CommonModule,
     RouterModule,
     ReactiveFormsModule,
+    AgmCoreModule.forRoot({
+      apiKey: environment.googleMapsKey,
+      libraries: ['places'],
+    }),
 
     ...matModules,
   ],
@@ -60,7 +72,9 @@ const matModules = [
     OfferCardComponent,
     BottomFilterComponent,
     LightsliderComponent,
+    MapComponent,
 
+    AgmCoreModule,
     ...matModules,
   ],
 })
