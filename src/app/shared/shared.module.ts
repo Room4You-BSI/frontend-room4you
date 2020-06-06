@@ -18,6 +18,7 @@ import { RouterModule } from '@angular/router';
 import { BottomFilterComponent } from './components/bottom-filter/bottom-filter.component';
 import { HeaderComponent } from './components/header/header.component';
 import { OfferCardComponent } from './components/offer-card/offer-card.component';
+import { LightsliderComponent } from './lightslider/lightslider.component';
 
 
 const matModules = [
@@ -41,6 +42,7 @@ const matModules = [
     HeaderComponent,
     OfferCardComponent,
     BottomFilterComponent,
+    LightsliderComponent,
   ],
   imports: [
     CommonModule,
@@ -57,6 +59,7 @@ const matModules = [
     HeaderComponent,
     OfferCardComponent,
     BottomFilterComponent,
+    LightsliderComponent,
 
     ...matModules,
   ],

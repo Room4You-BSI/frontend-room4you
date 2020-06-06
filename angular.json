@@ -28,9 +28,15 @@
               "src/assets"
             ],
             "styles": [
+              "node_modules/lightslider/dist/css/lightslider.min.css",
+              "node_modules/lightgallery/dist/css/lightgallery.min.css",
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/jquery/dist/jquery.min.js",
+              "node_modules/lightgallery/dist/js/lightgallery-all.min.js",
+              "node_modules/lightslider/dist/js/lightslider.min.js"
+            ]
           },
           "configurations": {
             "dev": {

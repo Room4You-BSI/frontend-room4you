@@ -5,6 +5,8 @@ import { AboutComponent } from './about/about.component';
 import { AdvertiseComponent } from './advertise/advertise.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
+import { OfferDetailsComponent } from './offer-list/offer-details/offer-details.component';
+import { OfferListComponent } from './offer-list/offer-list.component';
 import { RegisterComponent } from './register/register.component';
 
 
@@ -33,6 +35,19 @@ const routes: Routes = [
   {
     path: 'register',
     component: RegisterComponent,
+  },
+  {
+    path: 'offers',
+    children: [
+      {
+        path: '',
+        component: OfferListComponent,
+      },
+      {
+        path: ':offerId',
+        component: OfferDetailsComponent,
+      },
+    ],
   },
 ];
 
