@@ -1,0 +1,27 @@
+<div class="slider-wrapper" [style.width.px]="sliderWidth">
+
+  <!-- TITLE -->
+  <h2>{{title}}</h2>
+
+  <!-- RATE -->
+  <div class="rate-wrapper">
+    <ng-container *ngFor="let i of [0, 1, 2, 3, 4]">
+      <mat-icon class="cursor-pointer rate-icon" (click)="rate = i + 1" [class.rated]="rate > i" aria-hidden="false" aria-label="Rate star">grade</mat-icon>
+    </ng-container>
+  </div>
+
+  <!-- FAVORITE -->
+  <mat-icon (click)="favorite = !favorite" class="cursor-pointer rated-favorite rate-icon" aria-hidden="false" aria-label="Favorite">{{favorite ? 'favorite' : 'favorite_border'}}</mat-icon>
+
+  <!-- SLIDER -->
+  <div [style.width.px]="sliderWidth">
+    <ul id="imageGallery" #imageGallery>
+      <li *ngFor="let image of images" [attr.data-thumb]="image" [attr.data-src]="image">
+        <img [src]="image" hidden>
+        <div class="slide-item" [style.width.px]="sliderWidth">
+          <div class="cursor-pointer" [style.height.px]="sliderHeight" [ngStyle]="{'background-image': 'url(' + image + ')'}"></div>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>

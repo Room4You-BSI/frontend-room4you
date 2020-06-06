@@ -1,0 +1,60 @@
+@import 'src/sass/custom-colors';
+
+.slide-item {
+  padding-left: 70px;
+  padding-right: 70px;
+  box-sizing: border-box;
+  background-color: #F1F1F1;
+
+  >div{
+    width: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+}
+
+mat-icon.rate-icon {
+  color: #ccc;
+  font-size: 20px;
+  width: 20px;
+  height: 20px;
+
+  &.rated {
+    color: $r4u-red;
+  }
+
+  &.rated-favorite {
+    color: $r4u-red;
+    font-size: 26px;
+    width: 26px;
+    height: 26px;
+    position: absolute;
+    top: 52px;
+    right: 5px;
+    z-index: 999;
+  }
+}
+
+.slider-wrapper {
+  position: relative;
+
+  .rate-wrapper {
+    position: absolute;
+    right: 0;
+    top: 4px;
+  }
+}
+
+h2 {
+  font-size: 23px;
+  font-weight: 400;
+  color: $r4u-green;
+}
+
+.rated-favorite {
+  position: absolute;
+  top: 52px;
+  right: 5px;
+  z-index: 999;
+}

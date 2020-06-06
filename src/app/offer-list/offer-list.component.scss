@@ -1,0 +1,134 @@
+@import 'src/sass/custom-colors';
+@import 'src/sass/custom-mat-icon-base';
+
+#main-container {
+  display: flex;
+  justify-content: center;
+
+  .column2-wrapper {
+    margin-top: 30px;
+    margin-left: 30px;
+
+    .column2-header {
+      padding-left: 30px;
+      position: relative;
+      color: $r4u-green;
+
+      .sorter {
+        position: absolute;
+        right: 0;
+        bottom: -10px;
+
+        p {
+          align-items: flex-end;
+          display: flex;
+
+          &:after {
+            @extend .custom-material-icons;
+            content: 'import_export';
+            color: $r4u-red;
+          }
+        }
+      }
+
+      h2 {
+        margin-bottom: 0;
+        margin-top: 50px;
+        font-size: 23px;
+        font-weight: 400;
+      }
+
+      .breadcrumb span {
+        margin-right: 10px;
+
+        &:not(.breadcrumb-separator) {
+          font-weight: bold;
+        }
+      }
+    }
+  }
+
+  .item-card {
+    color: $r4u-gray-dark;
+    background-color: $r4u-gray-light;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    padding: 30px;
+
+    &.offers {
+      max-width: 1010px;
+      margin-top: 10px;
+      padding-top: 54px;
+    }
+
+    &.filter-sidebar {
+      width: 233px;
+      margin-top: 30px;
+    }
+
+    .offer-card-item:not(.last) {
+      margin-bottom: 30px;
+    }
+  }
+
+  .price-filter-item mat-form-field {
+    width: 50%;
+    float: left;
+    box-sizing: border-box;
+
+    &:nth-child(1) {
+      padding-right: 10px;
+    }
+
+    &:nth-child(2) {
+      padding-left: 10px;
+    }
+  }
+
+  .filter-subtitle {
+    color: $r4u-green;
+    margin-top: 20px;
+  }
+
+  hr.filter-divider {
+    border-top: 1px solid $r4u-green;
+  }
+  .amenities-options {
+    display: flex;
+    align-content: center;
+    flex-flow: column;
+
+    mat-checkbox {
+      margin-bottom: 15px;
+    }
+  }
+
+  .pagination-display {
+    position: absolute;
+    right: 30px;
+    top: 10px;
+  }
+
+  &.sizeLT800 {
+    .column2-wrapper {
+      .column2-header {
+        h2 {
+          padding-bottom: 20px;
+        }
+      }
+    }
+  }
+
+  &.sizeLT600 {
+    .column2-wrapper {
+      margin-left: 0;
+    }
+  }
+}
+
+.bottom-filter {
+  position: fixed;
+  bottom: 0;
+  z-index: 999;
+  width: 100%;
+}
