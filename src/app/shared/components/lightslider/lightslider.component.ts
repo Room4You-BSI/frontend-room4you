@@ -35,18 +35,9 @@ export class LightsliderComponent implements AfterViewInit, OnDestroy {
   @ViewChild('imageGallery', {static: true}) imageGallery: ElementRef;
 
   @Input() images: string[] = [
-    'https://sachinchoolur.github.io/lightslider/img/cS-1.jpg',
-    'https://sachinchoolur.github.io/lightslider/img/cS-2.jpg',
-    'https://sachinchoolur.github.io/lightslider/img/cS-3.jpg',
-    'https://sachinchoolur.github.io/lightslider/img/cS-4.jpg',
-    'https://sachinchoolur.github.io/lightslider/img/cS-5.jpg',
-    'https://sachinchoolur.github.io/lightslider/img/cS-6.jpg',
-    'https://sachinchoolur.github.io/lightslider/img/cS-7.jpg',
-    'https://sachinchoolur.github.io/lightslider/img/cS-8.jpg',
-    'https://sachinchoolur.github.io/lightslider/img/cS-9.jpg',
-    'https://sachinchoolur.github.io/lightslider/img/cS-10.jpg',
-    'https://sachinchoolur.github.io/lightslider/img/cS-11.jpg',
-    'https://sachinchoolur.github.io/lightslider/img/cS-12.jpg',
+    'https://images.madeiramadeira.com.br/product/images/75801354-quarto-de-solteiro-completo-com-guarda-roupa-closet-painel-cabeceira-e-nicho-mov-siena-moveis-1_zoom-1500x1500.jpg',
+    'https://images.madeiramadeira.com.br/product/images/75801354-quarto-de-solteiro-completo-com-guarda-roupa-closet-painel-cabeceira-e-nicho-mov-siena-moveis-1_zoom-1500x1500.jpg',
+    'https://images.madeiramadeira.com.br/product/images/75801354-quarto-de-solteiro-completo-com-guarda-roupa-closet-painel-cabeceira-e-nicho-mov-siena-moveis-1_zoom-1500x1500.jpg',
   ];
 
   @Input() title = 'Quarto São Paulo Tatuapé';

@@ -25,6 +25,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { LightsliderComponent } from './components/lightslider/lightslider.component';
 import { MapComponent } from './components/map/map.component';
 import { OfferCardComponent } from './components/offer-card/offer-card.component';
+import { OwnerCardComponent } from './components/owner-card/owner-card.component';
 
 
 const matModules = [
@@ -51,6 +52,7 @@ const matModules = [
     BottomFilterComponent,
     LightsliderComponent,
     MapComponent,
+    OwnerCardComponent,
   ],
   imports: [
     CommonModule,
@@ -73,6 +75,7 @@ const matModules = [
     BottomFilterComponent,
     LightsliderComponent,
     MapComponent,
+    OwnerCardComponent,
 
     AgmCoreModule,
     ...matModules,

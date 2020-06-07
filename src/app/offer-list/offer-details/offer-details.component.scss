@@ -1,0 +1,59 @@
+@import 'src/sass/custom-colors';
+
+#main-container {
+  display: flex;
+  justify-content: center;
+  padding-top: 45px;
+  margin-bottom: 50px;
+
+  .left-column {
+    width: 590px;
+  }
+
+  .right-column {
+    width: 250px;
+    height: 400px;
+    margin-left: 75px;
+  }
+
+  p.description {
+    text-align: justify;
+    margin-top: 64px;
+    margin-bottom: 70px;
+    color: $r4u-gray-dark;
+  }
+
+  .room-attribute {
+    mat-icon, i {
+      position: absolute;
+      color: #ccc;
+
+      &.available {
+        color: $r4u-red;
+      }
+
+      &.place {
+        color: $r4u-red;
+      }
+    }
+
+    p {
+      margin-left: 35px;
+      padding-top: 3px;
+    }
+  }
+
+  .map-wrapper {
+    margin-top: 30px;
+  }
+
+  .card-inner-title {
+    color: $r4u-green;
+    font-size: 18px;
+    font-weight: 500;
+  }
+
+  hr {
+    border-color: $r4u-green;
+  }
+}

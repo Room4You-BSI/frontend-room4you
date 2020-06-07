@@ -17,7 +17,7 @@
 </ng-container>
 
 <ng-template #loadingBlock>
-  <mat-progress-spinner *ngIf="!serviceError; else errorBlock"></mat-progress-spinner>
+  <mat-spinner [diameter]="40" *ngIf="!serviceError; else errorBlock"></mat-spinner>
   <ng-template #errorBlock>
     <p>Não foi possível carregar a localização.</p>
   </ng-template>
