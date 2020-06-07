@@ -1,0 +1,64 @@
+@import 'src/sass/custom-colors';
+
+.owner-card {
+  color: $r4u-gray-dark;
+
+  h2 {
+    font-size: 23px;
+    font-weight: 400;
+    text-align: center;
+  }
+
+  .owner-image {
+    width: 130px;
+    height: 130px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 100px;
+    margin: 0 auto;
+  }
+
+  h4 {
+    color: $r4u-green;
+    text-align: center;
+    margin-top: 18px;
+    font-weight: 500;
+    margin-bottom: 4px;
+  }
+
+  p {
+    &.owner-card-description {
+      font-size: 12px;
+    }
+  }
+
+  .owner-card-footer {
+    display: flex;
+    justify-content: center;
+    >div {
+      width: 50%;
+    }
+
+    .owner-card-footer-left {
+      align-items: center;
+      display: flex;
+
+      .owner-footer-price {
+        font-weight: 500;
+        color: $r4u-green;
+        font-size: 18px;
+      }
+    }
+
+    .owner-card-footer-right {
+      button {
+        width: 100%;
+        margin-bottom: 10px;
+      }
+      mat-icon {
+        margin-right: 7px;
+      }
+    }
+  }
+}

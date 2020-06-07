@@ -4,12 +4,12 @@
   [class.sizeLT800]="sizeLT800"
 >
   <div>
-    <div class="card-image" [ngStyle]="{ 'background-image': 'url(' + image + ')'}">
+    <div class="card-image cursor-pointer" routerLink="/offers/1" [ngStyle]="{ 'background-image': 'url(' + image + ')'}">
       <span *ngIf="sizeLT800">R$ {{ price }}/mês</span>
     </div>
 
     <div *ngIf="sizeLT1000" class="r4u-clearfix"></div>
-    <h3 class="card-inner-title">{{ title }}</h3>
+    <h3 class="card-inner-title cursor-pointer" routerLink="/offers/1">{{ title }}</h3>
 
     <ng-container *ngIf="sizeLT800">
       <ng-container *ngFor="let i of [0, 1, 2, 3, 4]">
