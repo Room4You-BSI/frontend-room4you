@@ -63,6 +63,7 @@ export class LightsliderComponent implements AfterViewInit, OnDestroy {
       thumbItem: 7,
       slideMargin: 0,
       enableDrag: false,
+      controls: false,
       currentPagerPosition: 'left',
       onSliderLoad: el => {
         el.lightGallery({
@@ -72,7 +73,21 @@ export class LightsliderComponent implements AfterViewInit, OnDestroy {
     });
   }
 
+  previousSlide() {
+    if (this.slider) {
+      this.slider.goToPrevSlide();
+    }
+  }
+
+  nextSlide() {
+    if (this.slider) {
+      this.slider.goToNextSlide();
+    }
+  }
+
   ngOnDestroy() {
-    this.slider.destroy();
+    if (this.slider) {
+      this.slider.destroy();
+    }
   }
 }
