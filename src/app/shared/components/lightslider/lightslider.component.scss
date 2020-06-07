@@ -6,6 +6,10 @@
   box-sizing: border-box;
   background-color: #F1F1F1;
 
+  &.mobileView {
+    padding: 0;
+  }
+
   >div{
     width: 100%;
     background-position: center;
@@ -32,17 +36,22 @@ mat-icon.rate-icon {
     position: absolute;
     top: 52px;
     right: 5px;
-    z-index: 999;
+    z-index: 990;
   }
 }
 
 .slider-wrapper {
   position: relative;
+  max-width: 100%;
 
   .rate-wrapper {
     position: absolute;
     right: 0;
     top: 4px;
+  }
+
+  .slider-inner {
+    max-width: 100%;
   }
 }
 
@@ -56,14 +65,14 @@ h2 {
   position: absolute;
   top: 52px;
   right: 5px;
-  z-index: 999;
+  z-index: 990;
 }
 
 .controls {
   position: relative;
   >div {
     position: absolute;
-    z-index: 999;
+    z-index: 990;
     width: 100%;
     top: 120px;
 

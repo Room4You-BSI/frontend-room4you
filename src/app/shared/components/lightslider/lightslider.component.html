@@ -14,17 +14,20 @@
   <mat-icon (click)="favorite = !favorite" class="cursor-pointer rated-favorite rate-icon" aria-hidden="false" aria-label="Favorite">{{favorite ? 'favorite' : 'favorite_border'}}</mat-icon>
 
   <!-- SLIDER -->
-  <div [style.width.px]="sliderWidth">
-    <div class="controls">
+  <div class="slider-inner" [style.width.px]="sliderWidth">
+
+    <!-- CONTROLS -->
+    <div class="controls" [hidden]="mobileView">
       <div>
         <mat-icon class="control-left cursor-pointer" (click)="previousSlide()">chevron_left</mat-icon>
         <mat-icon class="control-right cursor-pointer" (click)="nextSlide()">chevron_right</mat-icon>
       </div>
     </div>
+
     <ul id="imageGallery" #imageGallery>
       <li *ngFor="let image of images" [attr.data-thumb]="image" [attr.data-src]="image">
         <img [src]="image" hidden>
-        <div class="slide-item" [style.width.px]="sliderWidth">
+        <div class="slide-item" [style.width.px]="sliderWidth" [class.mobileView]="mobileView">
           <div class="cursor-pointer" [style.height.px]="sliderHeight" [ngStyle]="{'background-image': 'url(' + image + ')'}"></div>
         </div>
       </li>

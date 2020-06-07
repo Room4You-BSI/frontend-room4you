@@ -1,4 +1,4 @@
-<ng-container *ngIf="lat && lng; else loadingBlock">
+<div *ngIf="lat && lng; else loadingBlock" class="map-wrapper">
   <agm-map [latitude]="lat" [zoom]="zoom" [longitude]="lng" [styles]="darkStyle">
     <agm-marker
       [latitude]="lat"
@@ -14,7 +14,7 @@
       </agm-info-window>
     </agm-marker>
   </agm-map>
-</ng-container>
+</div>
 
 <ng-template #loadingBlock>
   <mat-spinner [diameter]="40" *ngIf="!serviceError; else errorBlock"></mat-spinner>

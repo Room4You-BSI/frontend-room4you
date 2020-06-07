@@ -1,6 +1,11 @@
-agm-map {
-  height: 265px;
+.map-wrapper {
   width: 540px;
+  max-width: 100%;
+
+  agm-map {
+    height: 265px;
+    width: 100%;
+  }
 }
 
 mat-spinner {
