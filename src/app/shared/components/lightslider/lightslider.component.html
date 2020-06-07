@@ -15,6 +15,12 @@
 
   <!-- SLIDER -->
   <div [style.width.px]="sliderWidth">
+    <div class="controls">
+      <div>
+        <mat-icon class="control-left cursor-pointer" (click)="previousSlide()">chevron_left</mat-icon>
+        <mat-icon class="control-right cursor-pointer" (click)="nextSlide()">chevron_right</mat-icon>
+      </div>
+    </div>
     <ul id="imageGallery" #imageGallery>
       <li *ngFor="let image of images" [attr.data-thumb]="image" [attr.data-src]="image">
         <img [src]="image" hidden>
