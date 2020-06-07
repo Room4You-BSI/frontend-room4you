@@ -44,6 +44,7 @@ export class LightsliderComponent implements AfterViewInit, OnDestroy {
 
   @Input() rate = 3;
   @Input() favorite = false;
+  @Input() mobileView = false;
   @Input() sliderWidth = 580;
   @Input() sliderHeight = 290;
 
@@ -63,6 +64,7 @@ export class LightsliderComponent implements AfterViewInit, OnDestroy {
       thumbItem: 7,
       slideMargin: 0,
       enableDrag: false,
+      autoWidth: true,
       controls: false,
       currentPagerPosition: 'left',
       onSliderLoad: el => {
