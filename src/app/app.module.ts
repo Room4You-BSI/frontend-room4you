@@ -16,8 +16,8 @@ import { OfferDetailsComponent } from './offer-list/offer-details/offer-details.
 import { OfferListComponent } from './offer-list/offer-list.component';
 import { RegisterComponent } from './register/register.component';
 import { SharedModule } from './shared/shared.module';
-
-
+import { HttpClientModule } from '@angular/common/http';
+// import 'jasmine';
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,9 +39,10 @@ import { SharedModule } from './shared/shared.module';
     FormsModule,
     MatFormFieldModule,
     MatInputModule,
-    MatDividerModule
+    MatDividerModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [HttpClientModule, SharedModule],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
