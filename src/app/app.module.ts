@@ -42,7 +42,7 @@ import { HttpClientModule } from '@angular/common/http';
     MatDividerModule,
     HttpClientModule
   ],
-  providers: [HttpClientModule, SharedModule],
+  providers: [HttpClientModule, SharedModule, LoginComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
