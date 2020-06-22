@@ -81,4 +81,4 @@ const matModules = [
     ...matModules,
   ],
 })
-export class SharedModule { }
+export class SharedModule {}

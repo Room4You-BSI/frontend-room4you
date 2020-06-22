@@ -1,4 +1,7 @@
-import { NgModule } from '@angular/core';
+import { registerLocaleData } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
+import localePt from '@angular/common/locales/pt';
+import { LOCALE_ID, NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -11,13 +14,16 @@ import { AdvertiseComponent } from './advertise/advertise.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
+import { interceptors } from './interceptors';
 import { LoginComponent } from './login/login.component';
 import { OfferDetailsComponent } from './offer-list/offer-details/offer-details.component';
 import { OfferListComponent } from './offer-list/offer-list.component';
 import { RegisterComponent } from './register/register.component';
 import { SharedModule } from './shared/shared.module';
-import { HttpClientModule } from '@angular/common/http';
-// import 'jasmine';
+
+
+registerLocaleData(localePt);
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -42,7 +48,12 @@ import { HttpClientModule } from '@angular/common/http';
     MatDividerModule,
     HttpClientModule
   ],
-  providers: [HttpClientModule, SharedModule, LoginComponent],
+  providers: [
+    HttpClientModule,
+    SharedModule,
+    LoginComponent,
+    ...interceptors,
+    { provide: LOCALE_ID, useValue: 'pt-BR' }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -67,7 +67,6 @@
                 }
               ]
             },
-
             "production": {
               "fileReplacements": [
                 {
@@ -158,6 +157,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "room4you"
+    }
+  },
+  "defaultProject": "room4you",
+  "cli": {
+    "analytics": false
+  }
 }
