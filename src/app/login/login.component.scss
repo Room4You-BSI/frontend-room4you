@@ -5,7 +5,6 @@
 
   .content{
     margin-top: 200px;
-
     display: grid;
     gap: 1px;
 
@@ -33,13 +32,18 @@
       width: 250px;
       gap: 0px;
     }
+    div {
+      width: 250px;
+    }
 
   }
 }
-
+.alert alert-danger {
+  padding: 0;
+}
 
 .btn {
-  width: 100%;
+  width: 250px;
   padding: 12px 0;
   border: none;
   border-radius: 4px;
@@ -68,6 +72,11 @@
   text-decoration: underline;
 }
 
+.mat-form-field {
+  width: 250px;
+  padding: 0;
+}
 
-
-
+mat-form-field-wrapper {
+  padding: 0;
+}
