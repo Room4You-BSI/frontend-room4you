@@ -2,7 +2,7 @@
   <div class="content" [formGroup]="formUserRegister" (ngSubmit)="onSubmitRegister()">
     <h1>Faça seu cadastro</h1>
 
-    <mat-form-field appearance="outline">
+    <mat-form-field appearance="outline" style="margin-bottom: -1.25em">
       <mat-label>Nome</mat-label>
       <input matInput
       class="form-control"
@@ -13,14 +13,17 @@
       required>
     </mat-form-field>
 
-    <div *ngIf="formUserRegister.get('nome').invalid && (formUserRegister.get('nome').dirty || formUserRegister.get('nome').touched)"
-    class="alert alert-danger">
+    <div *ngIf="formUserRegister.get('nome').invalid && (formUserRegister.get('nome').dirty || formUserRegister.get('nome').touched)">
       <div *ngIf="formUserRegister.get('nome').errors.required">
         É necessário informar um nome.
       </div>
     </div>
 
-    <mat-form-field appearance="outline">
+    <div *ngIf="!(formUserRegister.get('nome').invalid && (formUserRegister.get('nome').dirty || formUserRegister.get('nome').touched))">
+      <br>
+    </div>
+
+    <mat-form-field appearance="outline" style="margin-bottom: -1.25em">
       <mat-label>Senha</mat-label>
       <input matInput
       class="form-control"
@@ -31,17 +34,20 @@
       required minlength="5">
     </mat-form-field>
 
-    <div *ngIf="formUserRegister.get('password').invalid && (formUserRegister.get('password').dirty || formUserRegister.get('password').touched)"
-    class="alert alert-danger">
+    <div *ngIf="formUserRegister.get('password').invalid && (formUserRegister.get('password').dirty || formUserRegister.get('password').touched)">
       <div *ngIf="formUserRegister.get('password').errors.required">
         É necessário informar uma senha.
       </div>
       <div *ngIf="formUserRegister.get('password').errors.minlength">
-        Senha deve conter no mínimo 5 caracteres.
+        Senha deve ter no mínimo 5 caracteres.
      </div>
     </div>
 
-    <mat-form-field appearance="outline">
+    <div *ngIf="!(formUserRegister.get('password').invalid && (formUserRegister.get('password').dirty || formUserRegister.get('password').touched))">
+      <br>
+    </div>
+
+    <mat-form-field appearance="outline" style="margin-bottom: -1.25em">
       <mat-label>Confirmar senha</mat-label>
       <input matInput
       class="form-control"
@@ -52,14 +58,17 @@
       required minlength="5">
     </mat-form-field>
 
-    <div *ngIf="formUserRegister.get('password').value != formUserRegister.get('repassword').value && formUserRegister.get('repassword').touched"
-    class="alert alert-danger">
+    <div *ngIf="formUserRegister.get('password').value != formUserRegister.get('repassword').value && formUserRegister.get('repassword').touched">
       <div>
         Senhas digitadas devem ser iguais.
       </div>
     </div>
 
-    <mat-form-field appearance="outline">
+    <div *ngIf="!(formUserRegister.get('password').value != formUserRegister.get('repassword').value && formUserRegister.get('repassword').touched)">
+      <br>
+    </div>
+
+    <mat-form-field appearance="outline" style="margin-bottom: -1.25em">
       <mat-label>Email</mat-label>
       <input matInput
       class="form-control"
@@ -70,14 +79,17 @@
       required email>
     </mat-form-field>
 
-    <div *ngIf="formUserRegister.get('email').invalid && (formUserRegister.get('email').dirty || formUserRegister.get('email').touched)"
-    class="alert alert-danger">
+    <div *ngIf="formUserRegister.get('email').invalid && (formUserRegister.get('email').dirty || formUserRegister.get('email').touched)">
       <div *ngIf="formUserRegister.get('email').errors.required">
         É necessário informar um e-mail.
       </div>
       <div *ngIf="!formUserRegister.get('email').errors.required">
         É necessário informar um e-mail válido.
       </div>
+    </div>
+
+    <div *ngIf="!(formUserRegister.get('email').invalid && (formUserRegister.get('email').dirty || formUserRegister.get('email').touched))">
+      <br>
     </div>
 
     <button mat-raised-button
