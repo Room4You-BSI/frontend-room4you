@@ -28,8 +28,6 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmitLogin() {
-    // console.log(this.formUserLogin.value);
-
     this.login(this.formUserLogin.controls.email.value, this.formUserLogin.controls.password.value).subscribe();
   }
 
@@ -38,6 +36,7 @@ export class LoginComponent implements OnInit {
     formData.append('email', email);
     formData.append('password', password);
 
+    console.warn(this.formUserLogin.value); // pode apertar enter para submeter
     return this.http.post<any>('http://52.67.36.1/get_profile', formData).pipe(
       tap(response => {
         console.log('response -> ', response);
