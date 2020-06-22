@@ -33,6 +33,7 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmitLogin() {
+    console.warn(this.formUserLogin.value); // pode apertar enter para submeter
     this.authService.login(this.formUserLogin.controls.email.value, this.formUserLogin.controls.password.value).pipe(
       tap(() => this.router.navigate([''])),
     ).subscribe();
