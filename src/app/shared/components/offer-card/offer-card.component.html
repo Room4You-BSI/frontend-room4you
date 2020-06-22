@@ -19,7 +19,7 @@
       <mat-icon (click)="favorite = !favorite" class="cursor-pointer rated-favorite rate-icon under-title" aria-hidden="false" aria-label="Favorite">{{favorite ? 'favorite' : 'favorite_border'}}</mat-icon>
     </ng-container>
 
-    <p>{{ text }}</p>
+    <p>{{ (text.length > descriptionLimit) ? (text | slice:0:descriptionLimit) + '...' : text }}</p>
     <div class="card-content-icons-wrapper">
 
       <!-- ICONS COLUMNS -->
@@ -79,7 +79,7 @@
     <mat-icon (click)="favorite = !favorite" class="cursor-pointer rated-favorite rate-icon" aria-hidden="false" aria-label="Favorite">{{favorite ? 'favorite' : 'favorite_border'}}</mat-icon>
   </div>
   <div class="price-wrapper">
-    <p>R$ {{ price }}</p>
+    <p>{{ price | currency:'BRL' }}</p>
     <p>Mensais</p>
   </div>
 </div>

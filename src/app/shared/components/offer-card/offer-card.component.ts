@@ -23,6 +23,8 @@ export class OfferCardComponent implements OnInit {
   @Input() attributesColumn1: OfferCardColumnItemModel[];
   @Input() attributesColumn2: OfferCardColumnItemModel[];
 
+  @Input() descriptionLimit = 216;
+
   private readonly size1000to1300Txt = '(min-width: 1000px) and (max-width: 1299.99px)';
   size1000to1300 = false;
 

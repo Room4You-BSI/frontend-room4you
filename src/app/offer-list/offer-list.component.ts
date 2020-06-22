@@ -6,6 +6,8 @@ import { tap } from 'rxjs/operators';
 
 import { OfferCardItemModel } from '@shared/models';
 
+import { OfferService } from '../shared/services/offer.service';
+
 
 @Component({
   selector: 'app-offer-list',
@@ -14,47 +16,7 @@ import { OfferCardItemModel } from '@shared/models';
 })
 export class OfferListComponent implements OnInit {
 
-  offerCards: OfferCardItemModel[] = [
-    {
-      title: 'Quarto São Paulo Tatuapé',
-      text: `Mussum Ipsum, cacilds vidis litro abertis. Nec orci ornare consequat. Praesent lacinia ultrices
-        consectetur. Sed non ipsum felis. Aenean aliquam molestie leo, vitae iaculis nisl. Mé faiz
-        elementum girarzis nisi eros.`,
-      image: 'https://media.gazetadopovo.com.br/haus/2018/10/quarto-infantil-dia-da-crianca-decoracao-design-arquitetura-dicas-karina-korn-5-768x521-baa14530.jpg',
-      price: 450,
-      rate: 3,
-      distance: '3,2 km do centro',
-      favorite: false,
-      attributesColumn1: [{label: 'Vaga', available: true}, {label: 'Wi-fi', available: true}],
-      attributesColumn2: [{label: 'Suíte', available: true}],
-    },
-    {
-      title: 'Quarto São Carlos',
-      text: `Mussum Ipsum, cacilds vidis litro abertis. Nec orci ornare consequat. Praesent lacinia ultrices
-        consectetur. Sed non ipsum felis. Aenean aliquam molestie leo, vitae iaculis nisl. Mé faiz
-        elementum girarzis nisi eros.`,
-      image: 'https://q-cf.bstatic.com/images/hotel/max1024x768/200/200710933.jpg',
-      price: 530,
-      rate: 2,
-      distance: 'Próximo a USP',
-      favorite: true,
-      attributesColumn1: [{label: 'Vaga', available: false}, {label: 'Wi-fi', available: true}],
-      attributesColumn2: [{label: 'Suíte', available: true}],
-    },
-    {
-      title: 'Dormitório em Ibaté',
-      text: `Mussum Ipsum, cacilds vidis litro abertis. Nec orci ornare consequat. Praesent lacinia ultrices
-        consectetur. Sed non ipsum felis. Aenean aliquam molestie leo, vitae iaculis nisl. Mé faiz
-        elementum girarzis nisi eros.`,
-      image: 'https://images.madeiramadeira.com.br/product/images/75801354-quarto-de-solteiro-completo-com-guarda-roupa-closet-painel-cabeceira-e-nicho-mov-siena-moveis-1_zoom-1500x1500.jpg',
-      price: 390,
-      rate: 4,
-      distance: '1,5 km do centro',
-      favorite: false,
-      attributesColumn1: [{label: 'Vaga', available: true}, {label: 'Wi-fi', available: true}],
-      attributesColumn2: [{label: 'Suíte', available: false}],
-    },
-  ];
+  offerCards: OfferCardItemModel[];
 
   amenityOptions: {label: string; control: FormControl}[] = [
     {label: 'Suíte', control: new FormControl(false)},
@@ -89,6 +51,7 @@ export class OfferListComponent implements OnInit {
 
   constructor(
     private breakpointObserver: BreakpointObserver,
+    private offerService: OfferService,
   ) {}
 
   ngOnInit() {
@@ -99,6 +62,11 @@ export class OfferListComponent implements OnInit {
       this.sizeLT800 = result.breakpoints[this.sizeLT800Txt];
       this.sizeLT600 = result.breakpoints[this.sizeLT600Txt];
     })).subscribe();
+
+    this.offerService.getOffers().pipe(
+      tap(response => this.offerCards = response),
+    ).subscribe();
+
   }
 
   checkPriceInputValues(controlFrom: FormControl, controlTo: FormControl) {
