@@ -1,5 +1,4 @@
 #home{
-
   .content{
     display: grid;
     justify-items: center;
@@ -22,6 +21,7 @@
       }
     }
   }
+
   .options {
     width: 100%;
     background-color: #375a7f;
@@ -54,6 +54,7 @@
       }
     }
   }
+
   .motivation {
     width: 100%;
     background-color: #D81E5B30;
@@ -77,4 +78,120 @@
     margin-top: 50px;
   }
 
+}
+
+@media only screen and (min-width: 320px){
+
+  #home{
+    .content{
+
+      .catcher{
+        width: 320px;
+
+        img{
+          width: 312px;
+        }
+      }
+
+      .options {
+
+        img{
+          justify-self: center;
+        }
+
+        .inner-options{
+          text-align: center;
+
+          .block{
+            display: grid;
+            width: 106;
+            font-weight: 400;
+          }
+        }
+      }
+      .motivation{
+
+        .inner-motivation{
+          .section{
+            display: grid;
+            width: 105px;
+            font-weight: 300;
+            h2, p{
+              font-size: medium;
+              text-align: left;
+
+              margin: 0;
+              width: 105px;
+            }
+          }
+        }
+      }
+
+      .signature {
+        width: 320px;
+        text-align: center;
+      }
+    }
+  }
+}
+
+@media only screen and (min-width: 768px){
+
+  #home{
+    .content{
+
+      .catcher{
+        width: 768px;
+
+        img{
+          width: 760px;
+        }
+      }
+
+      .options {
+        width: 100%;
+
+        img{
+          justify-self: center;
+        }
+
+        .inner-options{
+          text-align: center;
+
+          .block{
+            display: grid;
+            width: 256px;
+            font-weight: 300;
+
+          }
+
+
+        }
+      }
+
+      .motivation{
+        width: 100%;
+
+        .inner-motivation{
+          .section{
+            display: grid;
+            width: 256px;
+            font-weight: 300;
+            h2, p{
+              font-size: medium;
+              text-align: center;
+
+              margin: 0;
+              width: 256px;
+            }
+          }
+        }
+      }
+
+      .signature {
+        width: 768px;
+        text-align: center;
+      }
+    }
+  }
 }

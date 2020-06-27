@@ -4,8 +4,6 @@
   justify-content: center;
 
   .content{
-    margin-top: 200px;
-
     display: grid;
     gap: 1px;
 
@@ -41,7 +39,6 @@
   }
 }
 
-
 .btn {
   width: 250px;
   padding: 12px 0;
@@ -72,5 +69,26 @@
   text-decoration: underline;
 }
 
+@media only screen and (min-width: 320px){
+  #register {
+    .content{
+      margin-top: 50px;
+    }
+  }
+}
 
+@media only screen and (min-width: 768px){
+  #register {
+    .content{
+      margin-top: 70px;
+    }
+  }
+}
 
+@media only screen and (min-width: 1023px){
+  #register {
+    .content{
+      margin-top: 200px;
+    }
+  }
+}
