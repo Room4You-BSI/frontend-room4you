@@ -1,14 +1,10 @@
-.mat-form-field .mat-form-field-wrapper{
-  margin-bottom: 0em;
-}
-
 #login {
   display: flex;
   align-items: center;
   justify-content: center;
-
+  width: 100%;
   .content{
-    margin-top: 200px;
+    // margin-top: 200px;
     display: grid;
     gap: 1px;
 
@@ -74,4 +70,30 @@
   background-color: #D81E5B;
   color: black;
   text-decoration: underline;
+}
+
+
+@media only screen and (min-width: 320px){
+  #login {
+    .content{
+      margin-top: 50px;
+    }
+  }
+}
+
+@media only screen and (min-width: 768px){
+  #login {
+    .content{
+      margin-top: 70px;
+    }
+  }
+}
+
+
+@media only screen and (min-width: 1023px){
+  #login {
+    .content{
+      margin-top: 200px;
+    }
+  }
 }
