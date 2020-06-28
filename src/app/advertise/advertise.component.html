@@ -1,1 +1,170 @@
-<p>advertise works!</p>
+<div class="stepper-wrapper">
+  <mat-horizontal-stepper labelPosition="bottom" linear #stepper>
+
+    <!-- STEP - 1 -->
+    <mat-step [stepControl]="step1Form">
+      <ng-template matStepLabel>Inicio</ng-template>
+      <div class="step-container">
+        <div class="step-row step-1-title-wrapper">
+          <h2>Como é seu espaço?</h2>
+        </div>
+
+        <div class="step-row radio-group-container">
+          <div class="radio-group-wrapper-50">
+            <p>Você mora no local?</p>
+            <mat-radio-group aria-label="Selecione uma opção" [formControl]="step1Form.controls.livesInLocal">
+              <mat-radio-button value="1">Sim</mat-radio-button>
+              <mat-radio-button value="2">Não</mat-radio-button>
+            </mat-radio-group>
+          </div>
+          <div class="radio-group-wrapper-50">
+            <p>Possui animais?</p>
+            <mat-radio-group aria-label="Selecione uma opção" [formControl]="step1Form.controls.hasPet">
+              <mat-radio-button value="1">Sim</mat-radio-button>
+              <mat-radio-button value="2">Não</mat-radio-button>
+            </mat-radio-group>
+          </div>
+        </div>
+
+        <div class="step-row radio-group-wrapper-100">
+          <p>Há restrição de sexo?</p>
+          <mat-radio-group aria-label="Selecione uma opção" [formControl]="step1Form.controls.genderRestriction">
+            <mat-radio-button value="1">Masculino</mat-radio-button>
+            <mat-radio-button value="2">Feminino</mat-radio-button>
+            <mat-radio-button value="3">Nenhum</mat-radio-button>
+          </mat-radio-group>
+        </div>
+
+        <div class="step-row radio-group-container">
+          <div class="step-1-select-wrapper">
+            <p class="r4u-mb-0">Quantas pessoas residem no local?</p>
+            <mat-form-field>
+              <mat-label>Selecione</mat-label>
+              <mat-select [formControl]="step1Form.controls.howManyLivesInLocal">
+                <mat-option [value]="1">1 pessoa</mat-option>
+                <mat-option [value]="2">2 pessoas</mat-option>
+                <mat-option [value]="3">3 pessoas</mat-option>
+                <mat-option [value]="4">4 pessoas</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="radio-group-wrapper-50">
+            <p>Está mobiliado?</p>
+            <mat-radio-group aria-label="Selecione uma opção" [formControl]="step1Form.controls.hasFurniture">
+              <mat-radio-button value="1">Sim</mat-radio-button>
+              <mat-radio-button value="2">Não</mat-radio-button>
+            </mat-radio-group>
+          </div>
+        </div>
+      </div>
+    </mat-step>
+
+    <!-- STEP - 2 -->
+    <mat-step [stepControl]="step2Form">
+      <ng-template matStepLabel>Comodidades</ng-template>
+      <div class="step-container">
+        <div class="step-row step-1-title-wrapper">
+          <h2>Comodidades</h2>
+        </div>
+
+        <div class="step-row radio-group-container vertical-center">
+          <div>
+            <mat-checkbox [formControl]="step2Form.controls.wifi">Wi-Fi</mat-checkbox>
+          </div>
+          <div>
+            <mat-checkbox [formControl]="step2Form.controls.washMachine">Máquina de lavar</mat-checkbox>
+          </div>
+        </div>
+
+        <div class="step-row radio-group-container">
+          <mat-checkbox [formControl]="step2Form.controls.parkingSpace">Vaga para carro</mat-checkbox>
+          <mat-checkbox [formControl]="step2Form.controls.mealIncluded">Inclui refeições</mat-checkbox>
+          <mat-checkbox [formControl]="step2Form.controls.suite">Suíte</mat-checkbox>
+        </div>
+
+        <div class="step-row radio-group-container">
+          <mat-checkbox [formControl]="step2Form.controls.writingDesk">Mesa/Escrivaninha</mat-checkbox>
+          <mat-checkbox [formControl]="step2Form.controls.air">Ar-condicionado</mat-checkbox>
+          <mat-checkbox [formControl]="step2Form.controls.tv">Televisão</mat-checkbox>
+        </div>
+
+        <div class="step-row radio-group-container">
+          <div>
+            <mat-checkbox [formControl]="step2Form.controls.bed">Cama</mat-checkbox>
+          </div>
+        </div>
+      </div>
+    </mat-step>
+
+    <!-- STEP - 3 -->
+    <mat-step [stepControl]="step3Form">
+      <ng-template matStepLabel>Descrição</ng-template>
+      <div class="step-container">
+        <div class="step-row step-1-title-wrapper">
+          <h2>Descrição</h2>
+        </div>
+
+        <div class="step-row radio-group-container vertical-center">
+          <div class="r4u-w-100">
+            <p>Descreva o quarto</p>
+            <textarea matInput placeholder="Insira uma descrição" [formControl]="step3Form.controls.description"></textarea>
+          </div>
+        </div>
+
+        <!-- Endereço -->
+        <mat-form-field>
+          <mat-label>Endereço</mat-label>
+          <input id="priceTo" matInput type="text" (focusout)="setAddress()" [formControl]="step3Form.controls.address">
+        </mat-form-field>
+
+        <app-map
+          *ngIf="address"
+          address="address"
+          textInfo="Seu quarto"
+        ></app-map>
+      </div>
+    </mat-step>
+
+    <!-- STEP - 4 -->
+    <mat-step>
+      <ng-template matStepLabel>Fotos</ng-template>
+      <div class="step-container">
+        <div class="step-row step-1-title-wrapper">
+          <h2>Faça o upload das suas fotos</h2>
+        </div>
+
+        <div class="step-row radio-group-container uploader-section">
+          <div class="uploader-wrapper">
+            <app-file-uploader (completeUpload)="filesComplete($event)"></app-file-uploader>
+          </div>
+          <div class="file-list">
+            <ng-container *ngFor="let file of files; let i = index">
+              <p>
+                {{ file.name }}
+                <mat-icon class="cursor-pointer" (click)="removeFile(i)" color="warn">close</mat-icon>
+              </p>
+              <div class="file-thumbnail" [ngStyle]="{'background-image': 'url(' + file.url + ')'}"></div>
+            </ng-container>
+          </div>
+        </div>
+      </div>
+    </mat-step>
+
+    <!-- STEP - 5 -->
+    <mat-step>
+      <ng-template matStepLabel>Finalizar</ng-template>
+      <div class="step-container">
+        <div class="step-row step-1-title-wrapper">
+          <h2>Finalizar</h2>
+        </div>
+
+        <div class="step-row radio-group-container uploader-section">
+          <p>Ao clicar em finalizar você concorda com nessos <a [routerLink]="['/terms-and-policy']">termos e políticas</a></p>
+        </div>
+      </div>
+    </mat-step>
+  </mat-horizontal-stepper>
+  <div class="next-button-wrapper">
+    <button (click)="goForward(stepper)" type="button" mat-flat-button color="accent">{{ stepper.selectedIndex < 4 ? 'Prosseguir' : 'Finalizar' }}</button>
+  </div>
+</div>

@@ -55,6 +55,47 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   clear: both;
 }
 
-.mat-checkbox-frame {
+.mat-checkbox-frame, .mat-radio-outer-circle {
   border-color: $r4u-green;
 }
+
+// === stepper ===
+.mat-step-header .mat-step-icon {
+
+  font-size: 20px;
+  &:not(.mat-step-icon-selected) {
+    background-color: transparent;
+    color: $r4u-red;
+  }
+}
+
+.mat-step-icon-content {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid $r4u-green;
+  border-radius: 50px;
+  padding: 4px;
+}
+
+.mat-step-icon {
+  width: 30px !important;
+  height: 30px !important;
+}
+
+.mat-horizontal-stepper-header::before,
+.mat-horizontal-stepper-header::after,
+.mat-stepper-horizontal-line {
+  border-top-color: $r4u-red;
+}
+// === stepper - end ===
+
+// === progressbar ===
+
+.mat-progress-bar.mat-accent .mat-progress-bar-buffer {
+  background-color: $r4u-gray-light2;
+}
+
+// === progressbar - end ===
