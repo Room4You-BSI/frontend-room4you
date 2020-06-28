@@ -20,6 +20,7 @@ import { OfferDetailsComponent } from './offer-list/offer-details/offer-details.
 import { OfferListComponent } from './offer-list/offer-list.component';
 import { RegisterComponent } from './register/register.component';
 import { SharedModule } from './shared/shared.module';
+import { TermsAndPolicyComponent } from './terms-and-policy/terms-and-policy.component';
 
 
 registerLocaleData(localePt);
@@ -33,7 +34,8 @@ registerLocaleData(localePt);
     LoginComponent,
     RegisterComponent,
     OfferDetailsComponent,
-    OfferListComponent
+    OfferListComponent,
+    TermsAndPolicyComponent,
   ],
   imports: [
     BrowserModule,

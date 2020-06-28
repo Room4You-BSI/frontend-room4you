@@ -8,6 +8,7 @@ import { LoginComponent } from './login/login.component';
 import { OfferDetailsComponent } from './offer-list/offer-details/offer-details.component';
 import { OfferListComponent } from './offer-list/offer-list.component';
 import { RegisterComponent } from './register/register.component';
+import { TermsAndPolicyComponent } from './terms-and-policy/terms-and-policy.component';
 
 
 const routes: Routes = [
@@ -35,6 +36,10 @@ const routes: Routes = [
   {
     path: 'register',
     component: RegisterComponent,
+  },
+  {
+    path: 'terms-and-policy',
+    component: TermsAndPolicyComponent,
   },
   {
     path: 'offers',

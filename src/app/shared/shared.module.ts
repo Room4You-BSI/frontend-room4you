@@ -11,8 +11,11 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatRadioModule } from '@angular/material/radio';
 import { MatSelectModule } from '@angular/material/select';
+import { MatStepperModule } from '@angular/material/stepper';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { RouterModule } from '@angular/router';
 
@@ -21,6 +24,7 @@ import { AgmCoreModule } from '@agm/core';
 import { environment } from '@environment';
 
 import { BottomFilterComponent } from './components/bottom-filter/bottom-filter.component';
+import { FileUploaderComponent } from './components/file-uploader/file-uploader.component';
 import { HeaderComponent } from './components/header/header.component';
 import { LightsliderComponent } from './components/lightslider/lightslider.component';
 import { MapComponent } from './components/map/map.component';
@@ -42,6 +46,9 @@ const matModules = [
   MatCheckboxModule,
   MatExpansionModule,
   MatProgressSpinnerModule,
+  MatStepperModule,
+  MatRadioModule,
+  MatProgressBarModule,
 ];
 
 
@@ -53,6 +60,7 @@ const matModules = [
     LightsliderComponent,
     MapComponent,
     OwnerCardComponent,
+    FileUploaderComponent,
   ],
   imports: [
     CommonModule,
@@ -76,6 +84,7 @@ const matModules = [
     LightsliderComponent,
     MapComponent,
     OwnerCardComponent,
+    FileUploaderComponent,
 
     AgmCoreModule,
     ...matModules,
