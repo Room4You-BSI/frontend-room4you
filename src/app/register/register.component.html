@@ -1,105 +1,145 @@
 <div id="register">
-  <div class="content" [formGroup]="formUserRegister" (ngSubmit)="onSubmitRegister()">
-    <h1>Faça seu cadastro</h1>
+  <h1>Faça seu cadastro</h1>
+  <form class="content" [formGroup]="formUserRegister">
 
-    <mat-form-field appearance="outline" style="margin-bottom: -1.25em">
-      <mat-label>Nome</mat-label>
-      <input matInput
-      class="form-control"
-      type="nome"
-      name="nome"
-      id="nome"
-      formControlName="nome"
-      required>
-    </mat-form-field>
+    <div class="left">
+      <mat-divider></mat-divider>
+      <h3>Campos obrigatórios</h3>
+      <mat-divider></mat-divider><br>
 
-    <div *ngIf="formUserRegister.get('nome').invalid && (formUserRegister.get('nome').dirty || formUserRegister.get('nome').touched)">
-      <div *ngIf="formUserRegister.get('nome').errors.required">
-        É necessário informar um nome.
+      <mat-form-field appearance="outline" style="margin-bottom: -1.25em">
+        <mat-label>Nome</mat-label>
+        <input matInput
+        class="form-control"
+        type="nome"
+        name="nome"
+        id="nome"
+        formControlName="nome"
+        required>
+      </mat-form-field>
+
+      <div *ngIf="formUserRegister.get('nome').invalid && (formUserRegister.get('nome').dirty || formUserRegister.get('nome').touched)">
+        <div *ngIf="formUserRegister.get('nome').errors.required">
+          É necessário informar um nome.
+        </div>
+      </div>
+
+      <div *ngIf="!(formUserRegister.get('nome').invalid && (formUserRegister.get('nome').dirty || formUserRegister.get('nome').touched))">
+        <br>
+      </div>
+
+      <mat-form-field appearance="outline" style="margin-bottom: -1.25em">
+        <mat-label>Senha</mat-label>
+        <input matInput
+        class="form-control"
+        type="password"
+        name="password"
+        id="password"
+        formControlName="password"
+        required minlength="5">
+      </mat-form-field>
+
+      <div *ngIf="formUserRegister.get('password').invalid && (formUserRegister.get('password').dirty || formUserRegister.get('password').touched)">
+        <div *ngIf="formUserRegister.get('password').errors.required">
+          É necessário informar uma senha.
+        </div>
+        <div *ngIf="formUserRegister.get('password').errors.minlength">
+          Senha deve ter no mínimo 5 caracteres.
+       </div>
+      </div>
+
+      <div *ngIf="!(formUserRegister.get('password').invalid && (formUserRegister.get('password').dirty || formUserRegister.get('password').touched))">
+        <br>
+      </div>
+
+      <mat-form-field appearance="outline" style="margin-bottom: -1.25em">
+        <mat-label>Confirmar senha</mat-label>
+        <input matInput
+        class="form-control"
+        type="password"
+        name="repassword"
+        id="repassword"
+        formControlName="repassword"
+        required minlength="5">
+      </mat-form-field>
+
+      <div *ngIf="formUserRegister.get('password').value != formUserRegister.get('repassword').value && formUserRegister.get('repassword').touched">
+        <div>
+          Senhas digitadas devem ser iguais.
+        </div>
+      </div>
+
+      <div *ngIf="!(formUserRegister.get('password').value != formUserRegister.get('repassword').value && formUserRegister.get('repassword').touched)">
+        <br>
+      </div>
+
+      <mat-form-field appearance="outline" style="margin-bottom: -1.25em">
+        <mat-label>Email</mat-label>
+        <input matInput
+        class="form-control"
+        type="email"
+        name="email"
+        id="email"
+        formControlName="email"
+        required email>
+      </mat-form-field>
+
+      <div *ngIf="formUserRegister.get('email').invalid && (formUserRegister.get('email').dirty || formUserRegister.get('email').touched)">
+        <div *ngIf="formUserRegister.get('email').errors.required">
+          É necessário informar um e-mail.
+        </div>
+        <div *ngIf="!formUserRegister.get('email').errors.required">
+          É necessário informar um e-mail válido.
+        </div>
+      </div>
+
+      <div *ngIf="!(formUserRegister.get('email').invalid && (formUserRegister.get('email').dirty || formUserRegister.get('email').touched))">
+        <br>
       </div>
     </div>
 
-    <div *ngIf="!(formUserRegister.get('nome').invalid && (formUserRegister.get('nome').dirty || formUserRegister.get('nome').touched))">
-      <br>
-    </div>
+    <div class="right">
 
-    <mat-form-field appearance="outline" style="margin-bottom: -1.25em">
-      <mat-label>Senha</mat-label>
-      <input matInput
-      class="form-control"
-      type="password"
-      name="password"
-      id="password"
-      formControlName="password"
-      required minlength="5">
-    </mat-form-field>
+      <mat-divider></mat-divider>
+      <h3>Campos não obrigatórios</h3>
+      <mat-divider></mat-divider><br>
 
-    <div *ngIf="formUserRegister.get('password').invalid && (formUserRegister.get('password').dirty || formUserRegister.get('password').touched)">
-      <div *ngIf="formUserRegister.get('password').errors.required">
-        É necessário informar uma senha.
-      </div>
-      <div *ngIf="formUserRegister.get('password').errors.minlength">
-        Senha deve ter no mínimo 5 caracteres.
-     </div>
-    </div>
+      <mat-form-field appearance="outline">
+        <mat-label>Celular XX XX XXXXX XXXX</mat-label>
+        <input matInput
+        class="form-control"
+        type="tel"
+        name="cell"
+        id="cell"
+        formControlName="cell"
+        minlength="13" maxlength="13">
+      </mat-form-field>
 
-    <div *ngIf="!(formUserRegister.get('password').invalid && (formUserRegister.get('password').dirty || formUserRegister.get('password').touched))">
-      <br>
-    </div>
+      <mat-form-field appearance="outline">
+        <mat-label>Breve descrição sobre mim</mat-label>
+        <textarea matInput
+        class="form-control"
+        type="text"
+        name="aboutMe"
+        id="aboutMe"
+        formControlName="aboutMe">
+        </textarea>
+      </mat-form-field>
 
-    <mat-form-field appearance="outline" style="margin-bottom: -1.25em">
-      <mat-label>Confirmar senha</mat-label>
-      <input matInput
-      class="form-control"
-      type="password"
-      name="repassword"
-      id="repassword"
-      formControlName="repassword"
-      required minlength="5">
-    </mat-form-field>
-
-    <div *ngIf="formUserRegister.get('password').value != formUserRegister.get('repassword').value && formUserRegister.get('repassword').touched">
-      <div>
-        Senhas digitadas devem ser iguais.
+      <div class="upload" style="justify-content: center">
+        <div style="padding-top: 10px; width: 100px" >Foto do perfil</div>
+        <app-file-uploader (completeUpload)="fotoEnviada($event)"></app-file-uploader>
       </div>
     </div>
+  </form>
 
-    <div *ngIf="!(formUserRegister.get('password').value != formUserRegister.get('repassword').value && formUserRegister.get('repassword').touched)">
-      <br>
-    </div>
-
-    <mat-form-field appearance="outline" style="margin-bottom: -1.25em">
-      <mat-label>Email</mat-label>
-      <input matInput
-      class="form-control"
-      type="email"
-      name="email"
-      id="email"
-      formControlName="email"
-      required email>
-    </mat-form-field>
-
-    <div *ngIf="formUserRegister.get('email').invalid && (formUserRegister.get('email').dirty || formUserRegister.get('email').touched)">
-      <div *ngIf="formUserRegister.get('email').errors.required">
-        É necessário informar um e-mail.
-      </div>
-      <div *ngIf="!formUserRegister.get('email').errors.required">
-        É necessário informar um e-mail válido.
-      </div>
-    </div>
-
-    <div *ngIf="!(formUserRegister.get('email').invalid && (formUserRegister.get('email').dirty || formUserRegister.get('email').touched))">
-      <br>
-    </div>
-
-    <button mat-raised-button
+  <button mat-raised-button
     type="submit"
     color="primary"
     class="btn btn-primary mt-4"
     value="Salvar"
     (click)="onSubmitRegister()"
-    [disabled]="!formUserRegister.valid"
-    >Cadastrar</button>
-
-  </div>
+    [disabled]="!formUserRegister.valid">
+    Cadastrar
+  </button>
 </div>

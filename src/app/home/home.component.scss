@@ -24,7 +24,7 @@
 
   .options {
     width: 100%;
-    background-color: #375a7f;
+    background-color: #1A5D63;
     .inner-options {
       display: flex;
       align-items: center;
@@ -33,14 +33,14 @@
       .block {
         display: flex;
         border: #17233092 solid 2px;
-        background-color: #375a7f;
+        background-color: #1A5D63;
         color: snow;
         justify-content:center;
         align-items:center;
       }
 
       .block:hover{
-        background-color: #1d2f42;
+        background-color: #154a4e;
       }
 
       h3 {
@@ -65,9 +65,13 @@
       justify-content: center;
       .section{
         max-width: 400px;
-        h2, p{
-          text-align: center;
+        h2{
+          font-weight: 600;
           margin: 10px 30px;
+        }
+        p{
+          font-weight: 400;
+          font-style: italic;
         }
       }
     }
