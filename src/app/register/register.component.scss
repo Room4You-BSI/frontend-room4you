@@ -1,10 +1,16 @@
 #register {
-  display: flex;
+  display: grid;
   align-items: center;
   justify-content: center;
+  justify-items: center;
+  text-align: center;
+
+  h1 {
+    color: #D81E5B;
+  }
 
   .content{
-    display: grid;
+    display: flex;
     gap: 1px;
 
     button {
@@ -14,11 +20,6 @@
     button:hover {
       background-color: white;
       color: #D81E5B;
-    }
-
-    h1 {
-      color: #D81E5B;
-      text-align: center;
     }
 
     h3 {
@@ -36,59 +37,36 @@
       width: 250px;
     }
 
+    .right{
+      .upload{
+        display: flex;
+        span{
+          align-self: top;
+        }
+      }
+    }
   }
 }
 
-.btn {
-  width: 250px;
-  padding: 12px 0;
-  border: none;
-  border-radius: 4px;
-  margin: 0;
-  opacity: 0.85;
-  display: inline-block;
-  font-size: 17px;
-  line-height: 20px;
-  text-decoration: none; /* remove underline from anchors */
+textarea {
+  height: 110px;
 }
 
-.fb {
-  background-color: #3B5998;
-  color: white;
-}
-
-.google {
-  background-color: white;
-  color: #dd4b39;
-}
-
-.google.btn:hover,
-.fb.btn:hover{
-  background-color: #D81E5B;
-  color: black;
-  text-decoration: underline;
-}
 
 @media only screen and (min-width: 320px){
   #register {
-    .content{
-      margin-top: 50px;
-    }
+    margin-top: 50px;
   }
 }
 
 @media only screen and (min-width: 768px){
   #register {
-    .content{
-      margin-top: 70px;
-    }
+    margin-top: 70px;
   }
 }
 
 @media only screen and (min-width: 1023px){
   #register {
-    .content{
-      margin-top: 200px;
-    }
+    margin-top: 150px;
   }
 }
