@@ -34,7 +34,8 @@
       name="password"
       id="password"
       formControlName="password"
-      required minlength="5">
+      required minlength="5"
+      autocomplete="on">
     </mat-form-field>
 
     <div *ngIf="formUserLogin.get('password').invalid && (formUserLogin.get('password').dirty || formUserLogin.get('password').touched);">

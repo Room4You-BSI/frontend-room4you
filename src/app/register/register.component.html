@@ -36,7 +36,8 @@
         name="password"
         id="password"
         formControlName="password"
-        required minlength="5">
+        required minlength="5"
+        autocomplete="on">
       </mat-form-field>
 
       <div *ngIf="formUserRegister.get('password').invalid && (formUserRegister.get('password').dirty || formUserRegister.get('password').touched)">
@@ -60,7 +61,8 @@
         name="repassword"
         id="repassword"
         formControlName="repassword"
-        required minlength="5">
+        required minlength="5"
+        autocomplete="on">
       </mat-form-field>
 
       <div *ngIf="formUserRegister.get('password').value != formUserRegister.get('repassword').value && formUserRegister.get('repassword').touched">
