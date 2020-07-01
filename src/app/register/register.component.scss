@@ -39,17 +39,26 @@
 
     .right{
       .upload{
+        justify-content: center;
         display: flex;
-        span{
-          align-self: top;
+        height: 40px;
+
+        .upload-text{
+          padding-top: 10px;
+          width: 100px;
         }
+
       }
+    }
+
+    .show{
+      font-size: small;
     }
   }
 }
 
 textarea {
-  height: 110px;
+  height: 95px;
 }
 
 

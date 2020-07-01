@@ -84,6 +84,8 @@
         required email>
       </mat-form-field>
 
+      <div class="error" *ngIf="this.erro && this.erro.status === 422"><i>*O e-mail informado já existe!</i></div>
+
       <div *ngIf="formUserRegister.get('email').invalid && (formUserRegister.get('email').dirty || formUserRegister.get('email').touched)">
         <div *ngIf="formUserRegister.get('email').errors.required">
           É necessário informar um e-mail.
@@ -126,10 +128,12 @@
         </textarea>
       </mat-form-field>
 
-      <div class="upload" style="justify-content: center">
-        <div style="padding-top: 10px; width: 100px" >Foto do perfil</div>
+      <div class="upload" >
+        <div class="upload-text">Foto do perfil</div>
         <app-file-uploader (completeUpload)="fotoEnviada($event)"></app-file-uploader>
       </div>
+
+      <div class="showUploaded" *ngIf="showUploaded"> <i>*Foto carregada com sucesso! </i></div>
     </div>
   </form>
 

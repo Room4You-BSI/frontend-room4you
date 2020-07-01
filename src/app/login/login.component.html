@@ -59,5 +59,7 @@
       [disabled]="!formUserLogin.valid"
       >Login
     </button>
+
+    <div class="error" *ngIf="this.erro && this.erro.status === 422"><i>*Usuário ou senha inválido!</i></div>
   </form>
 </div>
