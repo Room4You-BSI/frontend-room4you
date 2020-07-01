@@ -36,7 +36,8 @@
         name="password"
         id="password"
         formControlName="password"
-        required minlength="5">
+        required minlength="5"
+        autocomplete="on">
       </mat-form-field>
 
       <div *ngIf="formUserRegister.get('password').invalid && (formUserRegister.get('password').dirty || formUserRegister.get('password').touched)">
@@ -60,7 +61,8 @@
         name="repassword"
         id="repassword"
         formControlName="repassword"
-        required minlength="5">
+        required minlength="5"
+        autocomplete="on">
       </mat-form-field>
 
       <div *ngIf="formUserRegister.get('password').value != formUserRegister.get('repassword').value && formUserRegister.get('repassword').touched">
@@ -83,6 +85,8 @@
         formControlName="email"
         required email>
       </mat-form-field>
+
+      <div class="error" *ngIf="this.erro && this.erro.status === 422"><i>*O e-mail informado já existe!</i></div>
 
       <div *ngIf="formUserRegister.get('email').invalid && (formUserRegister.get('email').dirty || formUserRegister.get('email').touched)">
         <div *ngIf="formUserRegister.get('email').errors.required">
@@ -126,10 +130,12 @@
         </textarea>
       </mat-form-field>
 
-      <div class="upload" style="justify-content: center">
-        <div style="padding-top: 10px; width: 100px" >Foto do perfil</div>
+      <div class="upload" >
+        <div class="upload-text">Foto do perfil</div>
         <app-file-uploader (completeUpload)="fotoEnviada($event)"></app-file-uploader>
       </div>
+
+      <div class="showUploaded" *ngIf="showUploaded"> <i>*Foto carregada com sucesso! </i></div>
     </div>
   </form>
 

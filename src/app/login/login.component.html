@@ -34,7 +34,8 @@
       name="password"
       id="password"
       formControlName="password"
-      required minlength="5">
+      required minlength="5"
+      autocomplete="on">
     </mat-form-field>
 
     <div *ngIf="formUserLogin.get('password').invalid && (formUserLogin.get('password').dirty || formUserLogin.get('password').touched);">
@@ -59,5 +60,7 @@
       [disabled]="!formUserLogin.valid"
       >Login
     </button>
+
+    <div class="error" *ngIf="this.erro && this.erro.status === 422"><i>*Usuário ou senha inválido!</i></div>
   </form>
 </div>
