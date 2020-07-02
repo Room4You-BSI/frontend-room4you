@@ -29,7 +29,7 @@ export class RegisterComponent implements OnInit {
       email: new FormControl(user.email),
       password: new FormControl(user.password),
       repassword: new FormControl(user.password),
-      userImg: new FormControl(user.userImg),
+      userImg: new FormControl('https://www.pngkit.com/png/detail/796-7963534_individuals-person-icon-circle-png.png'),
       cell: new FormControl(user.cell),
       aboutMe: new FormControl(user.aboutMe)
     });
