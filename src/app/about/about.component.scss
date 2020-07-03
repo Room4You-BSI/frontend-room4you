@@ -1,69 +1,62 @@
 #about {
   justify-self: center;
+
   .content {
-    width: 60%;
     margin: 0 auto;
+    text-align: justify;
     padding-top: 50px;
-    text-align: center;
-    text-justify: center;
-    align-self: center;
+
+    p {
+      font-size: large;
+      margin: 0 auto;
+      width: 70%;
+
+      span {
+        font-weight: 600;
+        color: #D81E5B;
+      }
+    }
     h2 {
-      font-size: xx-large;
+      text-align: center;
+      font-size: x-large;
     }
 
-    .people{
-      justify-content: center;
-      display: grid;
-
+    .about {
       h2 {
-        font-size: x-large;
+        font-size: xx-large;
       }
-      p {
-        font-weight: 700;
-      }
-      img {
-        border-radius: 50%;
-        padding: 0 50px;
-      }
+    }
 
-      .top{
-        display: flex;
-        justify-content: center;
-        .box {
-          display: inline-block;
+    .devs{
+      width: 100%;
+      text-align: center;
+      justify-content: center;
+      .box{
+        padding: 0 10px;
+        img {
+          border-radius: 50%;
+          width: 50px;
+          height: 50px;
         }
       }
-      .bot{
-        display: flex;
-      }
+        .top{
+          display: flex;
+          justify-content: center;
+        }
+        .bot{
+          justify-content: center;
+          display: flex;
+        }
     }
 
-    .description {
-      h2 {
-        font-size: x-large;
-      }
-    }
-
-    .parceria {
+    .partnership {
       display: flex;
       justify-content: center;
+
       img {
         padding: 50px;
         width: 150px;
         height: 70px;
-      }
-    }
-
-    img {
-      height: 150px;
-      width: 150px;
-    }
-
-    p {
-      font-size: large;
-      span {
-        font-weight: 600;
-        color: #D81E5B;
       }
     }
   }
@@ -73,19 +66,18 @@
   #about {
     .content {
 
-      .people {
+      .devs {
         p {
           font-weight: 500;
         }
         .box {
           img {
-            padding: 10px;
             width: 50px;
             height: 50px;
           }
         }
       }
-      .parceria {
+      .partnership {
         display: grid;
         img {
           padding: 20px;
@@ -100,23 +92,12 @@
   #about {
     .content {
 
-      .people {
+      .devs {
         p {
           font-weight: 500;
         }
-        .box{
-          img {
-              padding: 15px;
-              width: 50px;
-              height: 50px;
-            }
-          p{
-            padding: 0 10px;
-          }
-        }
-
       }
-      .parceria {
+      .partnership {
         display: grid;
       }
 
@@ -126,9 +107,28 @@
 @media only screen and (min-width: 768px){
   #about {
     .content {
-      .parceria {
+      .partnership {
         display: flex;
       }
+      .devs {
+        .box{
+          padding: 0 30px;
+          p {
+            font-weight: 600;
+          }
+          img {
+            width: 100px;
+            height: 100px;
+          }
+        }
+      }
+
+      .about, .project {
+        p {
+          width: 50%;
+        }
+      }
+
     }
   }
 }
