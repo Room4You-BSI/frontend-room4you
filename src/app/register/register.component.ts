@@ -76,5 +76,4 @@ export class RegisterComponent implements OnInit {
     this.formUserRegister.controls.userImg.setValue(event.url);
     this.showUploaded = true;
   }
-
 }
