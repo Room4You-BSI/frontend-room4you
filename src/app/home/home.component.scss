@@ -76,6 +76,7 @@
         p{
           font-weight: 400;
           font-style: italic;
+          margin: 0 5px;
         }
       }
     }
@@ -115,7 +116,6 @@
 
           .block{
             display: grid;
-            width: 106;
             font-weight: 400;
           }
         }
@@ -123,16 +123,15 @@
       .motivation{
 
         .inner-motivation{
+
           .section{
             display: grid;
-            width: 105px;
             font-weight: 300;
             h2, p{
               font-size: medium;
               text-align: left;
 
-              margin: 0;
-              width: 105px;
+              margin: 0 5px;
             }
           }
         }
