@@ -1,7 +1,10 @@
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { Component, OnInit } from '@angular/core';
 
-import { tap } from 'rxjs/operators';
+import { tap, catchError } from 'rxjs/operators';
+import { HttpErrorResponse, HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
+import { Observable, throwError } from 'rxjs';
 
 
 enum CustomBreakpoints {
@@ -30,6 +33,8 @@ export class HeaderComponent implements OnInit {
 
   downMdSize: boolean;
   onlyMdSize: boolean;
+  erro: HttpErrorResponse;
+  text: string;
 
   menuItems = [
     {text: 'Anuncie', link: '/advertise'},
@@ -40,6 +45,8 @@ export class HeaderComponent implements OnInit {
 
   constructor(
     private breakpointObserver: BreakpointObserver,
+    private http: HttpClient,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -51,5 +58,4 @@ export class HeaderComponent implements OnInit {
       this.onlyMdSize = result.breakpoints[CustomBreakpoints.MD_ONLY];
     })).subscribe();
   }
-
 }
