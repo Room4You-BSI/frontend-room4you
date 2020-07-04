@@ -45,8 +45,6 @@ export class HeaderComponent implements OnInit {
 
   constructor(
     private breakpointObserver: BreakpointObserver,
-    private http: HttpClient,
-    private router: Router
   ) {}
 
   ngOnInit(): void {
