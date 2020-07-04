@@ -39,7 +39,7 @@
         <ng-container *ngFor="let item of menuItems">
           <a mat-button *ngIf="!item.hiddeIfLogged || !logged" routerLinkActive="active-link" [routerLink]="item.link">{{ item.text }}</a>
         </ng-container>
-        <div class="user-info-wrapper" *ngIf="logged">
+        <div (click)="showDropdown = !showDropdown" class="user-info-wrapper cursor-pointer" *ngIf="logged">
           <div class="user-photo" [ngStyle]="{'background-image': 'url(' + userImage + ')'}"></div>
           <div class="user-name-wrapper">{{ userName }}</div>
         </div>
@@ -47,3 +47,11 @@
     </mat-grid-tile>
   </mat-grid-list>
 </mat-toolbar>
+
+<div class="user-option-dropdown" *ngIf="showDropdown && !downMdSize && logged">
+  <ul>
+    <li class="cursor-pointer"><a routerLink="/offers/my-posts-list">Meus posts</a></li>
+    <li class="cursor-pointer"><a routerLink="/offers/favorite-list">Meus favoritos</a></li>
+    <li class="cursor-pointer last"><a (click)="logout()">Logout</a></li>
+  </ul>
+</div>

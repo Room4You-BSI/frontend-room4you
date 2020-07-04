@@ -6,7 +6,7 @@ export interface CreateOfferModel {
   wifi: boolean;
   vaga_carro: boolean;
   mesa: boolean;
-  refeições: boolean;
+  meals: boolean;
   ar_condicionado: boolean;
   maquina_lavar: boolean;
   suite: boolean;

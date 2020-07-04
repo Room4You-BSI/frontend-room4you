@@ -30,7 +30,19 @@
   p {
     &.owner-card-description {
       font-size: 12px;
+      text-align: center;
     }
+
+    &.contact-p {
+      font-weight: 600;
+      text-align: center;
+    }
+  }
+
+  .email-btn-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 34px;
   }
 
   .owner-card-footer {
@@ -43,6 +55,7 @@
     .owner-card-footer-left {
       align-items: center;
       display: flex;
+      margin: 8px 0;
 
       .owner-footer-price {
         font-weight: 500;

@@ -92,3 +92,29 @@ mat-toolbar {
 .r4u-d-flex {
   display: flex;
 }
+
+.user-option-dropdown {
+  position: absolute;
+  right: 225px;
+  background-color: #f0f0f0;
+
+  ul {
+    list-style: none;
+    padding: 0 6px;
+    margin: 10px 0;
+    margin-bottom: 4px;
+
+    li {
+      padding: 6px 20px;
+      &:not(.last) {
+        border-bottom: 1px solid #ccc;
+      }
+
+      a {
+        text-decoration: none;
+        font-family: Roboto, "Helvetica Neue", sans-serif;
+        color: #606060;
+      }
+    }
+  }
+}

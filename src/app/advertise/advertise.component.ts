@@ -108,7 +108,7 @@ export class AdvertiseComponent implements OnInit {
       wifi: this.step2Form.controls.wifi.value,
       vaga_carro: this.step2Form.controls.parkingSpace.value,
       mesa: this.step2Form.controls.writingDesk.value,
-      refeições: this.step2Form.controls.mealIncluded.value,
+      meals: this.step2Form.controls.mealIncluded.value,
       ar_condicionado: this.step2Form.controls.air.value,
       maquina_lavar: this.step2Form.controls.washMachine.value,
       suite: this.step2Form.controls.suite.value,

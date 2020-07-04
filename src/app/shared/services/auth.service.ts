@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { BehaviorSubject, Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
@@ -22,6 +23,7 @@ export class AuthService {
   constructor(
     private http: HttpClient,
     private jwtService: JwtService,
+    private router: Router,
   ) {
     this.token = localStorage.getItem(this.TOKEN_KEY);
     if (this.token) {
@@ -41,6 +43,13 @@ export class AuthService {
         this.loginSubject.next(true);
       }),
     );
+  }
+
+  logout() {
+    sessionStorage.removeItem(this.TOKEN_KEY);
+    this.token = null;
+    this.router.navigate(['/home']);
+    this.loginSubject.next(false);
   }
 
   loginObservable(): Observable<boolean> {
