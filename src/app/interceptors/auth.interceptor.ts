@@ -20,7 +20,7 @@ export class AuthInterceptor implements HttpInterceptor {
     const backendUrl  = new RegExp(environment.backendBaseUrl);
 
     if (backendUrl.test(req.url) && this.authService.getToken()) {
-      transformedReq = req.clone({ setHeaders: { Authorization: this.authService.getToken() }});
+    transformedReq = req.clone({ setHeaders: { Authorization: 'bearer ' + this.authService.getToken() }});
     }
 
     return next.handle(transformedReq);

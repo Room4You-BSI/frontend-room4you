@@ -1,0 +1,58 @@
+<h1 mat-dialog-title>Endereço</h1>
+<div mat-dialog-content>
+  <p>Informe o endereço</p>
+
+  <div class="form-row">
+    <!-- CEP -->
+    <mat-form-field>
+      <mat-label>Cep</mat-label>
+      <input matInput [formControl]="data.form.controls.cep">
+    </mat-form-field>
+
+    <!-- RUA -->
+    <mat-form-field>
+      <mat-label>Rua</mat-label>
+      <input matInput [formControl]="data.form.controls.place">
+    </mat-form-field>
+  </div>
+
+  <div class="form-row">
+    <!-- Número -->
+    <mat-form-field>
+      <mat-label>Número</mat-label>
+      <input matInput [formControl]="data.form.controls.number">
+    </mat-form-field>
+
+    <!-- BAIRRO -->
+    <mat-form-field>
+      <mat-label>Bairro</mat-label>
+      <input matInput [formControl]="data.form.controls.neighborhood">
+    </mat-form-field>
+  </div>
+
+  <div class="form-row">
+    <!-- Cidade -->
+    <mat-form-field>
+      <mat-label>Cidade</mat-label>
+      <input matInput [formControl]="data.form.controls.city">
+    </mat-form-field>
+
+    <!-- Estado -->
+    <mat-form-field>
+      <mat-label>Estado</mat-label>
+      <input matInput [formControl]="data.form.controls.state">
+    </mat-form-field>
+  </div>
+
+  <div class="form-row form-row-last">
+    <!-- Referência -->
+    <mat-form-field>
+      <mat-label>Referência</mat-label>
+      <input matInput [formControl]="data.form.controls.reference">
+    </mat-form-field>
+  </div>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Fechar</button>
+  <button mat-button (click)="saveForm()" cdkFocusInitial>Salvar</button>
+</div>

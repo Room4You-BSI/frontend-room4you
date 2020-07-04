@@ -29,9 +29,9 @@
         <div class="step-row radio-group-wrapper-100">
           <p>Há restrição de sexo?</p>
           <mat-radio-group aria-label="Selecione uma opção" [formControl]="step1Form.controls.genderRestriction">
-            <mat-radio-button value="1">Masculino</mat-radio-button>
-            <mat-radio-button value="2">Feminino</mat-radio-button>
-            <mat-radio-button value="3">Nenhum</mat-radio-button>
+            <mat-radio-button value="m">Masculino</mat-radio-button>
+            <mat-radio-button value="f">Feminino</mat-radio-button>
+            <mat-radio-button value="n">Nenhum</mat-radio-button>
           </mat-radio-group>
         </div>
 
@@ -111,15 +111,29 @@
           </div>
         </div>
 
+        <div class="step-row radio-group-container">
+          <!-- Title -->
+          <mat-form-field>
+            <mat-label>Título</mat-label>
+            <input id="title" matInput type="text" [formControl]="step3Form.controls.title">
+          </mat-form-field>
+
+          <!-- Preço -->
+          <mat-form-field>
+            <mat-label>Preço</mat-label>
+            <input id="price" matInput type="number" [formControl]="step3Form.controls.price">
+          </mat-form-field>
+        </div>
+
         <!-- Endereço -->
-        <mat-form-field>
+        <mat-form-field class="r4u-w-100">
           <mat-label>Endereço</mat-label>
-          <input id="priceTo" matInput type="text" (focusout)="setAddress()" [formControl]="step3Form.controls.address">
+          <input id="address" class="cursor-pointer" readonly matInput type="text" (click)="openAddressModal()" [formControl]="addressControl">
         </mat-form-field>
 
         <app-map
-          *ngIf="address"
-          address="address"
+          *ngIf="addressControl.value"
+          [address]="addressControl.value"
           textInfo="Seu quarto"
         ></app-map>
       </div>

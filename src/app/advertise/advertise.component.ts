@@ -1,6 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { MatStepper } from '@angular/material/stepper';
+
+import { tap } from 'rxjs/operators';
+
+import { ModalAddressComponent } from '@shared/components/modal-address/modal-address.component';
+import { CreateOfferModel } from '@shared/models';
+
+import { OfferService } from '../shared/services/offer.service';
 
 
 @Component({
@@ -10,7 +18,6 @@ import { MatStepper } from '@angular/material/stepper';
 })
 export class AdvertiseComponent implements OnInit {
 
-  address: string;
   step1Form = new FormGroup({
     livesInLocal: new FormControl(null, Validators.required),
     hasPet: new FormControl(null, Validators.required),
@@ -33,12 +40,27 @@ export class AdvertiseComponent implements OnInit {
 
   step3Form = new FormGroup({
     description: new FormControl(null, Validators.required),
-    address: new FormControl(null, Validators.required),
+    title: new FormControl(null, Validators.required),
+    price: new FormControl(null, Validators.required),
+    addressForm: new FormGroup({
+      cep: new FormControl(null, [Validators.required, Validators.maxLength(9)]),
+      place: new FormControl(null, Validators.required),
+      number: new FormControl(null, Validators.required),
+      neighborhood: new FormControl(null, Validators.required),
+      city: new FormControl(null, Validators.required),
+      state: new FormControl(null, Validators.required),
+      reference: new FormControl(null),
+    }),
   });
+
+  addressControl = new FormControl(null);
 
   files: {name: string, url: string}[] = [];
 
-  constructor() {}
+  constructor(
+    private offerService: OfferService,
+    private dialog: MatDialog,
+  ) {}
 
   ngOnInit() {}
 
@@ -47,16 +69,10 @@ export class AdvertiseComponent implements OnInit {
   }
 
   goForward(stepper: MatStepper){
-    stepper.next();
     if (stepper.selectedIndex === 4) {
       this.submit();
     }
-  }
-
-  setAddress() {
-    if (this.step3Form.controls.address.value) {
-      this.address = this.step3Form.controls.address.value;
-    }
+    stepper.next();
   }
 
   filesComplete(data: {name: string, url: string}) {
@@ -67,7 +83,52 @@ export class AdvertiseComponent implements OnInit {
     this.files.splice(index, 1);
   }
 
+  openAddressModal(): void {
+    const dialogRef = this.dialog.open(ModalAddressComponent, {
+      width: '500px',
+      data: {form: this.step3Form.controls.addressForm}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      this.step3Form.controls.addressForm = result;
+      this.addressControl.setValue(`Rua ${result.controls.place.value}, ${result.controls.number.value}
+        ${result.controls.neighborhood.value} - ${result.controls.city.value}-${result.controls.state.value}`);
+    });
+  }
+
   submit() {
-    // Logica de submissão dos dados
+    const addressControl = this.step3Form.controls.addressForm as FormGroup;
+
+    const data: CreateOfferModel = {
+      mora_local: this.step1Form.controls.livesInLocal.value,
+      restricao_sexo: this.step1Form.controls.genderRestriction.value,
+      pessoas_no_local: this.step1Form.controls.howManyLivesInLocal.value,
+      mobiliado: this.step1Form.controls.hasFurniture.value,
+
+      wifi: this.step2Form.controls.wifi.value,
+      vaga_carro: this.step2Form.controls.parkingSpace.value,
+      mesa: this.step2Form.controls.writingDesk.value,
+      refeições: this.step2Form.controls.mealIncluded.value,
+      ar_condicionado: this.step2Form.controls.air.value,
+      maquina_lavar: this.step2Form.controls.washMachine.value,
+      suite: this.step2Form.controls.suite.value,
+      tv: this.step2Form.controls.tv.value,
+
+      title: this.step3Form.controls.title.value,
+      price: this.step3Form.controls.price.value,
+      description: this.step3Form.controls.description.value,
+      cep: addressControl.controls.cep.value,
+      rua: addressControl.controls.place.value,
+      bairro: addressControl.controls.neighborhood.value,
+      n_casa: addressControl.controls.number.value,
+      cidade: addressControl.controls.city.value,
+      estado: addressControl.controls.state.value,
+      referencia: addressControl.controls.reference.value || '',
+      imgs: this.files.map(file => file.url),
+    };
+
+    this.offerService.createOffer(data).pipe(
+      tap(response => console.log('sucesso', response)),
+    ).subscribe();
   }
 }

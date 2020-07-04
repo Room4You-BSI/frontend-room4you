@@ -3,19 +3,19 @@
 
 
 
-// describe('AdvertiseComponent', () => {
-//   let component: AdvertiseComponent;
-//   let fixture: ComponentFixture<AdvertiseComponent>;
+// describe('ModalAddressComponent', () => {
+//   let component: ModalAddressComponent;
+//   let fixture: ComponentFixture<ModalAddressComponent>;
 
 //   beforeEach(async(() => {
 //     TestBed.configureTestingModule({
-//       declarations: [ AdvertiseComponent ]
+//       declarations: [ ModalAddressComponent ]
 //     })
 //     .compileComponents();
 //   }));
 
 //   beforeEach(() => {
-//     fixture = TestBed.createComponent(AdvertiseComponent);
+//     fixture = TestBed.createComponent(ModalAddressComponent);
 //     component = fixture.componentInstance;
 //     fixture.detectChanges();
 //   });
