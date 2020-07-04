@@ -12,10 +12,11 @@
           dehaze
         </mat-icon>
       </button>
-
       <!-- MENU -->
       <mat-menu [hidden]="!downMdSize" #appMenu="matMenu">
-        <button *ngFor="let item of menuItems" [routerLink]="item.link" mat-menu-item>{{ item.text }}</button>
+        <ng-container *ngFor="let item of menuItems">
+          <button *ngIf="!item.hiddeIfLogged || !logged"  [routerLink]="item.link" mat-menu-item>{{ item.text }}</button>
+        </ng-container>
       </mat-menu>
 
       <!-- TITLE -->
@@ -34,8 +35,14 @@
 
     <!-- Menu block -->
     <mat-grid-tile *ngIf="!downMdSize" [colspan]="onlyMdSize ? 14 : 6">
-      <div id="desk-menu-wrapper">
-        <a mat-button routerLinkActive="active-link" *ngFor="let item of menuItems" [routerLink]="item.link">{{ item.text }}</a>
+      <div id="desk-menu-wrapper" [class.r4u-d-flex]="logged">
+        <ng-container *ngFor="let item of menuItems">
+          <a mat-button *ngIf="!item.hiddeIfLogged || !logged" routerLinkActive="active-link" [routerLink]="item.link">{{ item.text }}</a>
+        </ng-container>
+        <div class="user-info-wrapper" *ngIf="logged">
+          <div class="user-photo" [ngStyle]="{'background-image': 'url(' + userImage + ')'}"></div>
+          <div class="user-name-wrapper">{{ userName }}</div>
+        </div>
       </div>
     </mat-grid-tile>
   </mat-grid-list>

@@ -1,10 +1,10 @@
 import { BreakpointObserver } from '@angular/cdk/layout';
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 
-import { tap, catchError } from 'rxjs/operators';
-import { HttpErrorResponse, HttpClient } from '@angular/common/http';
-import { Router } from '@angular/router';
-import { Observable, throwError } from 'rxjs';
+import { tap } from 'rxjs/operators';
+
+import { AuthService } from '../../services/auth.service';
 
 
 enum CustomBreakpoints {
@@ -36,15 +36,20 @@ export class HeaderComponent implements OnInit {
   erro: HttpErrorResponse;
   text: string;
 
+  logged = false;
+  userImage = '';
+  userName = '';
+
   menuItems = [
-    {text: 'Anuncie', link: '/advertise'},
-    {text: 'Sobre', link: '/about'},
-    {text: 'Login', link: '/login'},
-    {text: 'Cadastre', link: '/register'},
+    {text: 'Anuncie', link: '/advertise', hiddeIfLogged: false},
+    {text: 'Sobre', link: '/about', hiddeIfLogged: false},
+    {text: 'Login', link: '/login', hiddeIfLogged: true},
+    {text: 'Cadastre', link: '/register', hiddeIfLogged: true},
   ];
 
   constructor(
     private breakpointObserver: BreakpointObserver,
+    private authService: AuthService,
   ) {}
 
   ngOnInit(): void {
@@ -54,6 +59,14 @@ export class HeaderComponent implements OnInit {
     ]).pipe(tap(result => {
       this.downMdSize = result.breakpoints[CustomBreakpoints.MD_DOWN];
       this.onlyMdSize = result.breakpoints[CustomBreakpoints.MD_ONLY];
+    })).subscribe();
+
+    this.authService.loginObservable().pipe(tap(response => {
+      this.logged = response;
+      if (response) {
+        this.userImage = this.authService.getImage();
+        this.userName = this.authService.getName();
+      }
     })).subscribe();
   }
 }
