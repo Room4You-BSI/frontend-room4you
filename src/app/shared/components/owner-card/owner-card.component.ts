@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+
+import { AuthorModel } from '@shared/models';
+
 
 @Component({
   selector: 'app-owner-card',
@@ -7,7 +10,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class OwnerCardComponent implements OnInit {
 
-  constructor() { }
+  @Input() authorData: AuthorModel;
+
+  constructor() {}
 
   ngOnInit(): void {
   }

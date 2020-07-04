@@ -1,62 +1,114 @@
-<div id="main-container" [class.sizeLT854]="sizeLT854">
-  <div class="left-column">
-    <app-lightslider [mobileView]="sizeLT650"></app-lightslider>
+<ng-container *ngIf="{details: details$ | async} as observables">
+  <div id="main-container" [class.sizeLT854]="sizeLT854">
+    <div class="left-column">
+      <app-lightslider
+        [mobileView]="sizeLT650"
+        [images]="observables.details.image"
+        [rate]="observables.details.rate"
+        [favorite]="observables.details.favorite"
+        [title]="observables.details.title"
+      ></app-lightslider>
 
-    <p class="description">
-      Quarto bem localizado, próximo ao metrô, Mussum Ipsum, cacilds vidis
-      litro abertis. Atirei o pau no gatis, per gatis num morreus. Casamentiss
-      faiz malandris se pirulitá. Mé faiz elementum girarzis, nisi eros vermeio. Admodum
-      accumsan disputationi eu sit. Vide electram sadipscing et per. Mais vale um
-      bebadis conhecidiss, que um alcoolatra anonimis. Não sou faixa preta cumpadi,
-      sou preto inteiris, inteiris. Em pé sem cair, deitado sem dormir
-    </p>
+      <p class="description">
+        {{ observables.details.text }}
+      </p>
 
-    <hr>
-    <h3 class="card-inner-title">Comodidades</h3>
+      <hr>
+      <h3 class="card-inner-title">Comodidades</h3>
 
-    <div class="room-attribute">
-      <mat-icon
-        [class.available]="true"
-        fontSet="material-icons-outlined"
-        aria-hidden="false"
-        aria-label="Location pin"
-      >
-        check_circle
-      </mat-icon>
-      <p>Quarto bem localizado, próximo ao metrô</p>
+      <div *ngFor="let item of observables.details.attributes" class="room-attribute">
+        <mat-icon
+          [class.available]="item.available"
+          fontSet="material-icons-outlined"
+          aria-hidden="false"
+          aria-label="Location pin"
+        >
+          check_circle
+        </mat-icon>
+        <p>{{ item.label }}</p>
+      </div>
+
+      <hr>
+      <h3 class="card-inner-title">Detalhes</h3>
+
+      <div class="room-attribute" *ngIf="observables.details.referencia" >
+        <mat-icon
+          [class.available]="true"
+          fontSet="material-icons-outlined"
+          aria-hidden="false"
+          aria-label="Location pin"
+        >
+          check_circle
+        </mat-icon>
+        <p>{{ observables.details.referencia }}</p>
+      </div>
+
+      <div class="room-attribute">
+        <mat-icon
+          [class.available]="true"
+          fontSet="material-icons-outlined"
+          aria-hidden="false"
+          aria-label="Location pin"
+        >
+          check_circle
+        </mat-icon>
+        <p>{{ genderRestrictions[observables.details.restricao_sexo] }}</p>
+      </div>
+
+      <div class="room-attribute">
+        <mat-icon
+          [class.available]="true"
+          fontSet="material-icons-outlined"
+          aria-hidden="false"
+          aria-label="Location pin"
+        >
+          check_circle
+        </mat-icon>
+        <p>{{ observables.details.mora_local ? 'Proprietário mora no local.' : 'Proprietário não mora no local.' }}</p>
+      </div>
+
+      <div class="room-attribute">
+        <mat-icon
+          [class.available]="true"
+          fontSet="material-icons-outlined"
+          aria-hidden="false"
+          aria-label="Location pin"
+        >
+          check_circle
+        </mat-icon>
+        <p>
+          {{
+            observables.details.pessoas_no_local < 2
+              ? peapleLivinMsgs[observables.details.pessoas_no_local -1]
+              : observables.details.pessoas_no_local + ' ' + peapleLivinMsgs[2]
+          }}
+        </p>
+      </div>
+
+      <div class="room-attribute">
+        <mat-icon
+          [class.available]="true"
+          fontSet="material-icons-outlined"
+          aria-hidden="false"
+          aria-label="Location pin"
+        >
+          check_circle
+        </mat-icon>
+        <p>{{ observables.details.mobiliado ? 'Mobiliado' : 'Não mobiliado' }}</p>
+      </div>
+
+      <div class="map-wrapper" *ngIf="address">
+        <app-map
+          [address]="address"
+          [textInfo]="observables.details.title"
+        ></app-map>
+      </div>
     </div>
-    <div class="room-attribute">
-      <mat-icon
-        [class.available]="true"
-        fontSet="material-icons-outlined"
-        aria-hidden="false"
-        aria-label="Location pin"
-      >
-        check_circle
-      </mat-icon>
-      <p>Wi-fi</p>
-    </div>
-    <div class="room-attribute">
-      <mat-icon
-        [class.available]="true"
-        fontSet="material-icons-outlined"
-        aria-hidden="false"
-        aria-label="Location pin"
-      >
-        check_circle
-      </mat-icon>
-      <p>Vaga disponível</p>
-    </div>
 
-    <div class="map-wrapper">
-      <app-map
-        address="Rua São Jorge, 375, Tatuapé - SP"
-        textInfo="Quarto São Paulo Tatuapé"
-      ></app-map>
+    <div class="right-column">
+      <app-owner-card
+        [authorData]="author$ | async"
+      ></app-owner-card>
     </div>
   </div>
-
-  <div class="right-column">
-    <app-owner-card></app-owner-card>
-  </div>
-</div>
+</ng-container>

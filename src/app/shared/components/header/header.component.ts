@@ -36,6 +36,8 @@ export class HeaderComponent implements OnInit {
   erro: HttpErrorResponse;
   text: string;
 
+  showDropdown = false;
+
   logged = false;
   userImage = '';
   userName = '';
@@ -59,14 +61,22 @@ export class HeaderComponent implements OnInit {
     ]).pipe(tap(result => {
       this.downMdSize = result.breakpoints[CustomBreakpoints.MD_DOWN];
       this.onlyMdSize = result.breakpoints[CustomBreakpoints.MD_ONLY];
+      if (this.downMdSize) {
+        this.showDropdown = false;
+      }
     })).subscribe();
 
     this.authService.loginObservable().pipe(tap(response => {
       this.logged = response;
+      this.showDropdown = false;
       if (response) {
         this.userImage = this.authService.getImage();
         this.userName = this.authService.getName();
       }
     })).subscribe();
+  }
+
+  logout() {
+    this.authService.logout();
   }
 }
