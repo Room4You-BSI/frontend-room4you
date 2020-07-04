@@ -4,27 +4,33 @@
 
     <div class="left">
       <mat-divider></mat-divider>
-      <h3>Campos obrigatórios</h3>
+      <h3>Informações de usuário</h3>
       <mat-divider></mat-divider><br>
 
       <mat-form-field appearance="outline" style="margin-bottom: -1.25em">
-        <mat-label>Nome</mat-label>
+        <mat-label>Email</mat-label>
         <input matInput
         class="form-control"
-        type="nome"
-        name="nome"
-        id="nome"
-        formControlName="nome"
-        required>
+        type="email"
+        name="email"
+        id="email"
+        formControlName="email"
+        placeholder="E-mail de cadastro"
+        required email>
       </mat-form-field>
 
-      <div *ngIf="formUserRegister.get('nome').invalid && (formUserRegister.get('nome').dirty || formUserRegister.get('nome').touched)">
-        <div *ngIf="formUserRegister.get('nome').errors.required">
-          É necessário informar um nome.
+      <div class="error" *ngIf="this.erro && this.erro.status === 422"><i>*O e-mail informado já existe!</i></div>
+
+      <div *ngIf="formUserRegister.get('email').invalid && (formUserRegister.get('email').dirty || formUserRegister.get('email').touched)">
+        <div *ngIf="formUserRegister.get('email').errors.required">
+          É necessário informar um e-mail.
+        </div>
+        <div *ngIf="!formUserRegister.get('email').errors.required">
+          É necessário informar um e-mail válido.
         </div>
       </div>
 
-      <div *ngIf="!(formUserRegister.get('nome').invalid && (formUserRegister.get('nome').dirty || formUserRegister.get('nome').touched))">
+      <div *ngIf="!(formUserRegister.get('email').invalid && (formUserRegister.get('email').dirty || formUserRegister.get('email').touched))">
         <br>
       </div>
 
@@ -76,48 +82,77 @@
       </div>
 
       <mat-form-field appearance="outline" style="margin-bottom: -1.25em">
-        <mat-label>Email</mat-label>
+        <mat-label>Nome</mat-label>
         <input matInput
         class="form-control"
-        type="email"
-        name="email"
-        id="email"
-        formControlName="email"
-        required email>
+        type="nome"
+        name="nome"
+        id="nome"
+        formControlName="nome"
+        required>
       </mat-form-field>
 
-      <div class="error" *ngIf="this.erro && this.erro.status === 422"><i>*O e-mail informado já existe!</i></div>
-
-      <div *ngIf="formUserRegister.get('email').invalid && (formUserRegister.get('email').dirty || formUserRegister.get('email').touched)">
-        <div *ngIf="formUserRegister.get('email').errors.required">
-          É necessário informar um e-mail.
-        </div>
-        <div *ngIf="!formUserRegister.get('email').errors.required">
-          É necessário informar um e-mail válido.
+      <div *ngIf="formUserRegister.get('nome').invalid && (formUserRegister.get('nome').dirty || formUserRegister.get('nome').touched)">
+        <div *ngIf="formUserRegister.get('nome').errors.required">
+          É necessário informar um nome.
         </div>
       </div>
 
-      <div *ngIf="!(formUserRegister.get('email').invalid && (formUserRegister.get('email').dirty || formUserRegister.get('email').touched))">
+      <div *ngIf="!(formUserRegister.get('nome').invalid && (formUserRegister.get('nome').dirty || formUserRegister.get('nome').touched))">
         <br>
       </div>
+
+      <div class="upload" >
+        <div class="upload-text">Foto do perfil</div>
+        <app-file-uploader (completeUpload)="fotoEnviada($event)"></app-file-uploader>
+      </div>
+
+      <div class="showUploaded" *ngIf="showUploaded"> <i>*Foto carregada com sucesso! </i></div>
     </div>
 
     <div class="right">
 
       <mat-divider></mat-divider>
-      <h3>Campos não obrigatórios</h3>
+      <h3>Informações de postagem</h3>
       <mat-divider></mat-divider><br>
 
+      <mat-form-field appearance="outline" style="margin-bottom: -1.25em">
+        <mat-label>Email para contato</mat-label>
+        <input matInput
+        class="form-control"
+        type="contactEmail"
+        name="contactEmail"
+        id="contactEmail"
+        formControlName="contactEmail"
+        required email>
+      </mat-form-field>
+
+      <div class="error" *ngIf="this.erro && this.erro.status === 422"><i>*O e-mail informado já existe!</i></div>
+
+      <div *ngIf="formUserRegister.get('contactEmail').invalid && (formUserRegister.get('contactEmail').dirty || formUserRegister.get('contactEmail').touched)">
+        <div *ngIf="formUserRegister.get('contactEmail').errors.required">
+          É necessário informar um e-mail.
+        </div>
+        <div *ngIf="!formUserRegister.get('contactEmail').errors.required">
+          É necessário informar um e-mail válido.
+        </div>
+      </div>
+
+      <div *ngIf="!(formUserRegister.get('contactEmail').invalid && (formUserRegister.get('contactEmail').dirty || formUserRegister.get('contactEmail').touched))">
+        <br>
+      </div>
+
       <mat-form-field appearance="outline">
-        <mat-label>Celular XX XX XXXXX XXXX</mat-label>
+        <mat-label>Celular para contato</mat-label>
         <input matInput
         class="form-control"
         type="tel"
         name="cell"
         id="cell"
         formControlName="cell"
-        minlength="13" maxlength="13">
+        >
       </mat-form-field>
+      <!-- minlength="13" maxlength="13" -->
 
       <mat-form-field appearance="outline">
         <mat-label>Breve descrição sobre mim</mat-label>
@@ -130,12 +165,6 @@
         </textarea>
       </mat-form-field>
 
-      <div class="upload" >
-        <div class="upload-text">Foto do perfil</div>
-        <app-file-uploader (completeUpload)="fotoEnviada($event)"></app-file-uploader>
-      </div>
-
-      <div class="showUploaded" *ngIf="showUploaded"> <i>*Foto carregada com sucesso! </i></div>
     </div>
   </form>
 

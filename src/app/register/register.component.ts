@@ -27,6 +27,7 @@ export class RegisterComponent implements OnInit {
     this.formUserRegister = new FormGroup({
       nome: new FormControl(user.nome),
       email: new FormControl(user.email),
+      contactEmail: new FormControl(user.contactEmail),
       password: new FormControl(user.password),
       repassword: new FormControl(user.password),
       userImg: new FormControl('https://www.pngkit.com/png/detail/796-7963534_individuals-person-icon-circle-png.png'),
@@ -42,6 +43,7 @@ export class RegisterComponent implements OnInit {
     if (this.formUserRegister.controls.password.value === this.formUserRegister.controls.repassword.value) {
       this.register( this.formUserRegister.controls.nome.value,
                   this.formUserRegister.controls.email.value,
+                  this.formUserRegister.controls.contactEmail.value,
                   this.formUserRegister.controls.password.value,
                   this.formUserRegister.controls.userImg.value,
                   this.formUserRegister.controls.cell.value,
@@ -49,10 +51,12 @@ export class RegisterComponent implements OnInit {
     }
   }
 
-  register(nome: string, email: string, password: string, userImg: string, cell: string, aboutMe: string): Observable<any> {
+  register(nome: string, email: string, contactEmail: string,
+           password: string, userImg: string, cell: string, aboutMe: string): Observable<any> {
     const formData = new FormData();
     formData.append('nome', nome);
     formData.append('email', email);
+    formData.append('contactEmail', contactEmail);
     formData.append('password', password);
     formData.append('userImg', userImg);
     formData.append('cell', cell);

@@ -23,9 +23,9 @@ export class FileUploaderComponent implements OnInit {
   /** Link text */
   @Input() text = 'Upload';
   /** Name used in form which will be sent in HTTP request. */
-  @Input() param = 'file';
+  @Input() param = 'images_file';
   /** Target URL for file uploading. */
-  @Input() target = 'http://52.67.36.1/upload-photo/'; // 'https://file.io'
+  @Input() target = 'http://52.67.36.1/upload-photo'; // 'https://file.io'
   /** File extension that accepted, same as 'accept' of <input type="file" />. By the default, it's set to 'image/*'. */
   @Input() accept = 'image/*';
   /** Allow you to add handler after its completion. Bubble up response text from remote. */

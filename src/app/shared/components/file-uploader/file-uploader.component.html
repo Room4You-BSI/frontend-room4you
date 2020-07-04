@@ -7,7 +7,7 @@
   <li *ngFor="let file of files" [@fadeInOut]="file.state">
     <mat-progress-bar color="accent" [value]="file.progress"></mat-progress-bar>
     <span id="file-label">
-      {{ file.data.name }}
+      {{ "Uploaded!" }}
       <a title="Retry" (click)="retryFile(file)" *ngIf="file.canRetry">
         <mat-icon>refresh</mat-icon>
       </a>
@@ -17,6 +17,7 @@
     </span>
   </li>
 </ul>
+<!-- {{ file.data.name }} linha 10 apenas escreve uploaded agora -->
 <input
   type="file"
   id="fileUpload"
