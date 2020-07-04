@@ -1,0 +1,9 @@
+.form-row {
+  display: flex;
+  justify-content: space-around;
+
+  &.form-row-last {
+    justify-content: start;
+    margin-left: 23px;
+  }
+}
