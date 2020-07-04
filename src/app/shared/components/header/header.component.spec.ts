@@ -8,6 +8,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatToolbarModule } from '@angular/material/toolbar';
 
 import { HeaderComponent } from './header.component';
+import { HttpClientModule } from '@angular/common/http';
 
 
 describe('HeaderComponent', () => {
@@ -27,6 +28,7 @@ describe('HeaderComponent', () => {
         MatIconModule,
         MatGridListModule,
         LayoutModule,
+        HttpClientModule
       ]
     })
     .compileComponents();

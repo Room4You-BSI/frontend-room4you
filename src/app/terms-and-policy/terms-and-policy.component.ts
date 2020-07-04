@@ -11,4 +11,8 @@ export class TermsAndPolicyComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {}
+
+  aceitar(){
+    window.close();
+  }
 }

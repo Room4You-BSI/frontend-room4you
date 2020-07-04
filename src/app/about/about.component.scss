@@ -1,0 +1,134 @@
+#about {
+  justify-self: center;
+
+  .content {
+    margin: 0 auto;
+    text-align: justify;
+    padding-top: 50px;
+
+    p {
+      font-size: large;
+      margin: 0 auto;
+      width: 70%;
+
+      span {
+        font-weight: 600;
+        color: #D81E5B;
+      }
+    }
+    h2 {
+      text-align: center;
+      font-size: x-large;
+    }
+
+    .about {
+      h2 {
+        font-size: xx-large;
+      }
+    }
+
+    .devs{
+      width: 100%;
+      text-align: center;
+      justify-content: center;
+      .box{
+        padding: 0 10px;
+        img {
+          border-radius: 50%;
+          width: 50px;
+          height: 50px;
+        }
+      }
+        .top{
+          display: flex;
+          justify-content: center;
+        }
+        .bot{
+          justify-content: center;
+          display: flex;
+        }
+    }
+
+    .partnership {
+      display: flex;
+      justify-content: center;
+
+      img {
+        padding: 50px;
+        width: 150px;
+        height: 70px;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 320px){
+  #about {
+    .content {
+
+      .devs {
+        p {
+          font-weight: 500;
+        }
+        .box {
+          img {
+            width: 50px;
+            height: 50px;
+          }
+        }
+      }
+      .partnership {
+        display: grid;
+        img {
+          padding: 20px;
+        }
+      }
+
+    }
+  }
+}
+
+@media only screen and (min-width: 320px) and (max-width: 768px){
+  #about {
+    .content {
+
+      .devs {
+        p {
+          font-weight: 500;
+        }
+      }
+      .partnership {
+        display: grid;
+      }
+
+    }
+  }
+}
+@media only screen and (min-width: 768px){
+  #about {
+    .content {
+      .partnership {
+        display: flex;
+      }
+      .devs {
+        .box{
+          padding: 0 30px;
+          p {
+            font-weight: 600;
+          }
+          img {
+            width: 100px;
+            height: 100px;
+          }
+        }
+      }
+
+      .about, .project {
+        p {
+          width: 50%;
+        }
+      }
+
+    }
+  }
+}
