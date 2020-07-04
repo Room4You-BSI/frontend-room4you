@@ -66,3 +66,29 @@ mat-toolbar {
 .active-link {
   border-bottom: 4px solid $r4u-green;
 }
+
+.user-info-wrapper {
+  display: flex;
+  align-items: center;
+  margin-left: 20px;
+
+  .user-photo {
+    width: 30px;
+    height: 30px;
+    background-color: #fff;
+    border-radius: 50px;
+    margin-right: 6px;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+
+  .user-name-wrapper {
+    font-weight: normal;
+    font-size: 15px;
+  }
+}
+
+.r4u-d-flex {
+  display: flex;
+}

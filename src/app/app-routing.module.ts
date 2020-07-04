@@ -1,6 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
+import { LoggedGuard } from '@shared/guards/logged.guard';
+import { NotLoggedGuard } from '@shared/guards/not-logged.guard';
+
 import { AboutComponent } from './about/about.component';
 import { AdvertiseComponent } from './advertise/advertise.component';
 import { HomeComponent } from './home/home.component';
@@ -24,6 +27,7 @@ const routes: Routes = [
   {
     path: 'advertise',
     component: AdvertiseComponent,
+    canActivate: [LoggedGuard],
   },
   {
     path: 'about',
@@ -32,10 +36,12 @@ const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent,
+    canActivate: [NotLoggedGuard],
   },
   {
     path: 'register',
     component: RegisterComponent,
+    canActivate: [NotLoggedGuard],
   },
   {
     path: 'terms-and-policy',
