@@ -1,7 +1,9 @@
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 
+import { Subscription } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
 import { OfferCardItemModel } from '@shared/models';
@@ -17,6 +19,10 @@ import { OfferService } from '../shared/services/offer.service';
 export class OfferListComponent implements OnInit {
 
   offerCards: OfferCardItemModel[];
+
+  title: string;
+  listType: string;
+  paramSubscription: Subscription;
 
   amenityOptions: {label: string; control: FormControl}[] = [
     {label: 'Suíte', control: new FormControl(false)},
@@ -52,6 +58,8 @@ export class OfferListComponent implements OnInit {
   constructor(
     private breakpointObserver: BreakpointObserver,
     private offerService: OfferService,
+    private route: ActivatedRoute,
+    private router: Router,
   ) {}
 
   ngOnInit() {
@@ -63,10 +71,31 @@ export class OfferListComponent implements OnInit {
       this.sizeLT600 = result.breakpoints[this.sizeLT600Txt];
     })).subscribe();
 
-    this.offerService.getOffers().pipe(
-      tap(response => this.offerCards = response),
-    ).subscribe();
+    this.paramSubscription = this.route.data.pipe(
+      tap(data => {
+        switch (data.listType || 'default') {
+          case 'my_posts':
+            this.offerService.getMyPosts().pipe(
+              tap(response => this.offerCards = response),
+            ).subscribe();
+            break;
 
+          case 'my_favorites':
+            this.offerService.getMyFavorites().pipe(
+              tap(response => this.offerCards = response),
+            ).subscribe();
+            break;
+
+          default:
+            this.offerService.getOffers().pipe(
+              tap(response => this.offerCards = response),
+            ).subscribe();
+            break;
+        }
+
+        this.title = data.title;
+      }),
+    ).subscribe();
   }
 
   checkPriceInputValues(controlFrom: FormControl, controlTo: FormControl) {
@@ -87,4 +116,7 @@ export class OfferListComponent implements OnInit {
     }
   }
 
+  navigateTo(route) {
+    this.router.navigate([route]);
+  }
 }

@@ -88,3 +88,11 @@ h2 {
     }
   }
 }
+
+.hide-extra-li {
+  ::ng-deep {
+    ul.lSPager.lSGallery li:last-child {
+      display: none !important;
+    }
+  }
+}

@@ -13,15 +13,8 @@
           <div class="radio-group-wrapper-50">
             <p>Você mora no local?</p>
             <mat-radio-group aria-label="Selecione uma opção" [formControl]="step1Form.controls.livesInLocal">
-              <mat-radio-button value="1">Sim</mat-radio-button>
-              <mat-radio-button value="2">Não</mat-radio-button>
-            </mat-radio-group>
-          </div>
-          <div class="radio-group-wrapper-50">
-            <p>Possui animais?</p>
-            <mat-radio-group aria-label="Selecione uma opção" [formControl]="step1Form.controls.hasPet">
-              <mat-radio-button value="1">Sim</mat-radio-button>
-              <mat-radio-button value="2">Não</mat-radio-button>
+              <mat-radio-button [value]="true">Sim</mat-radio-button>
+              <mat-radio-button [value]="false">Não</mat-radio-button>
             </mat-radio-group>
           </div>
         </div>
@@ -41,6 +34,7 @@
             <mat-form-field>
               <mat-label>Selecione</mat-label>
               <mat-select [formControl]="step1Form.controls.howManyLivesInLocal">
+                <mat-option [value]="0">0 pessoa</mat-option>
                 <mat-option [value]="1">1 pessoa</mat-option>
                 <mat-option [value]="2">2 pessoas</mat-option>
                 <mat-option [value]="3">3 pessoas</mat-option>
@@ -51,8 +45,8 @@
           <div class="radio-group-wrapper-50">
             <p>Está mobiliado?</p>
             <mat-radio-group aria-label="Selecione uma opção" [formControl]="step1Form.controls.hasFurniture">
-              <mat-radio-button value="1">Sim</mat-radio-button>
-              <mat-radio-button value="2">Não</mat-radio-button>
+              <mat-radio-button [value]="true">Sim</mat-radio-button>
+              <mat-radio-button [value]="false">Não</mat-radio-button>
             </mat-radio-group>
           </div>
         </div>
@@ -86,12 +80,6 @@
           <mat-checkbox [formControl]="step2Form.controls.writingDesk">Mesa/Escrivaninha</mat-checkbox>
           <mat-checkbox [formControl]="step2Form.controls.air">Ar-condicionado</mat-checkbox>
           <mat-checkbox [formControl]="step2Form.controls.tv">Televisão</mat-checkbox>
-        </div>
-
-        <div class="step-row radio-group-container">
-          <div>
-            <mat-checkbox [formControl]="step2Form.controls.bed">Cama</mat-checkbox>
-          </div>
         </div>
       </div>
     </mat-step>

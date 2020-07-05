@@ -51,13 +51,13 @@
 
       <!-- BREADCRUMB -->
       <div class="breadcrumb">
-        <span>São Paulo</span>
-        <span class="breadcrumb-separator">></span><!-- TODO: trocar por um icon chevron -->
-        <span>Step One</span>
+        <span (click)="navigateTo('/home')" class="cursor-pointer">Home</span>
+        <span class="breadcrumb-separator">></span>
+        <span>{{ title }}</span>
       </div>
 
       <!-- TITLE -->
-      <h2>Quartos Para Alugar em São Paulo</h2>
+      <h2>{{ title }}</h2>
 
       <!-- SORTER -->
       <div class="sorter cursor-pointer" (click)="sortOfferCars(offerCards)"><p>Ordenar</p></div>
@@ -66,6 +66,7 @@
       <div class="pagination-display">1-1000 resultados</div>
       <div *ngFor="let card of offerCards; let last = last" class="offer-card-item" [class.last]="last">
         <app-offer-card
+          [id]="card.post_id"
           [title]="card.title"
           [text]="card.text"
           [image]="card.image"

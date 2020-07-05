@@ -53,6 +53,17 @@ const routes: Routes = [
       {
         path: '',
         component: OfferListComponent,
+        data: {listType: 'default', title: 'Todos os anuncios'}
+      },
+      {
+        path: 'my-posts-list',
+        component: OfferListComponent,
+        data: {listType: 'my_posts', title: 'Meus Posts'}
+      },
+      {
+        path: 'favorite-list',
+        component: OfferListComponent,
+        data: {listType: 'my_favorites', title: 'Meus Favoritos'}
       },
       {
         path: ':offerId',
