@@ -17,7 +17,15 @@ export class OfferService {
   ) {}
 
   getOffers(): Observable<any> {
-    return this.http.get(`${environment.backendBaseUrl}posts`); // TODO: adicionar post_id
+    return this.http.get(`${environment.backendBaseUrl}posts`);
+  }
+
+  getMyPosts(): Observable<any> {
+    return this.http.get(`${environment.backendBaseUrl}my_posts_list`);
+  }
+
+  getMyFavorites(): Observable<any> {
+    return this.http.get(`${environment.backendBaseUrl}favorite_list`);
   }
 
   createOffer(body: CreateOfferModel): Observable<any> {

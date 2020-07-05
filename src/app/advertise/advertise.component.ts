@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatStepper } from '@angular/material/stepper';
+import { Router } from '@angular/router';
 
 import { tap } from 'rxjs/operators';
 
@@ -20,7 +21,6 @@ export class AdvertiseComponent implements OnInit {
 
   step1Form = new FormGroup({
     livesInLocal: new FormControl(null, Validators.required),
-    hasPet: new FormControl(null, Validators.required),
     genderRestriction: new FormControl(null, Validators.required),
     howManyLivesInLocal: new FormControl(null, Validators.required),
     hasFurniture: new FormControl(null, Validators.required),
@@ -30,7 +30,6 @@ export class AdvertiseComponent implements OnInit {
     wifi: new FormControl(false, Validators.required),
     parkingSpace: new FormControl(false, Validators.required),
     writingDesk: new FormControl(false, Validators.required),
-    bed: new FormControl(false, Validators.required),
     mealIncluded: new FormControl(false, Validators.required),
     air: new FormControl(false, Validators.required),
     washMachine: new FormControl(false, Validators.required),
@@ -60,6 +59,7 @@ export class AdvertiseComponent implements OnInit {
   constructor(
     private offerService: OfferService,
     private dialog: MatDialog,
+    private router: Router,
   ) {}
 
   ngOnInit() {}
@@ -102,7 +102,7 @@ export class AdvertiseComponent implements OnInit {
     const data: CreateOfferModel = {
       mora_local: this.step1Form.controls.livesInLocal.value,
       restricao_sexo: this.step1Form.controls.genderRestriction.value,
-      pessoas_no_local: this.step1Form.controls.howManyLivesInLocal.value,
+      pessoas_no_local: Number(this.step1Form.controls.howManyLivesInLocal.value),
       mobiliado: this.step1Form.controls.hasFurniture.value,
 
       wifi: this.step2Form.controls.wifi.value,
@@ -128,7 +128,7 @@ export class AdvertiseComponent implements OnInit {
     };
 
     this.offerService.createOffer(data).pipe(
-      tap(response => console.log('sucesso', response)),
+      tap(response => this.router.navigate(['offers/' + response.post_id])),
     ).subscribe();
   }
 }

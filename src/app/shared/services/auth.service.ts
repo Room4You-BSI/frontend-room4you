@@ -26,7 +26,7 @@ export class AuthService {
     private router: Router,
   ) {
     this.token = localStorage.getItem(this.TOKEN_KEY);
-    if (this.token) {
+    if (this.token && this.checkExp()) {
       this.loginSubject.next(true);
     }
   }
@@ -46,10 +46,9 @@ export class AuthService {
   }
 
   logout() {
-    sessionStorage.removeItem(this.TOKEN_KEY);
-    this.token = null;
-    this.router.navigate(['/home']);
+    this.cleanAuthData();
     this.loginSubject.next(false);
+    this.router.navigate(['/home']);
   }
 
   loginObservable(): Observable<boolean> {
@@ -57,11 +56,16 @@ export class AuthService {
   }
 
   isLoggedIn() {
-    return !!this.token && this.checkExp();
+    const isLoggedIn = !!this.token && this.checkExp();
+    if (!isLoggedIn) { this.cleanAuthData(); }
+    return isLoggedIn;
   }
 
   getToken() {
-    if (!this.token || !this.checkExp()) { return null; }
+    if (!this.token || !this.checkExp()) {
+      this.cleanAuthData();
+      return null;
+    }
     return this.token;
   }
 
@@ -82,5 +86,10 @@ export class AuthService {
 
   private checkExp() {
     return ((new Date()).getTime() / 1000) < this.getDecodedToken().exp;
+  }
+
+  private cleanAuthData() {
+    localStorage.removeItem(this.TOKEN_KEY);
+    this.token = null;
   }
 }

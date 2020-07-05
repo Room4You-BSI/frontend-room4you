@@ -2,6 +2,7 @@
   <div id="main-container" [class.sizeLT854]="sizeLT854">
     <div class="left-column">
       <app-lightslider
+        [id]="id"
         [mobileView]="sizeLT650"
         [images]="observables.details.image"
         [rate]="observables.details.rate"
@@ -79,7 +80,7 @@
         <p>
           {{
             observables.details.pessoas_no_local < 2
-              ? peapleLivinMsgs[observables.details.pessoas_no_local -1]
+              ? peapleLivinMsgs[observables.details.pessoas_no_local]
               : observables.details.pessoas_no_local + ' ' + peapleLivinMsgs[2]
           }}
         </p>
@@ -105,9 +106,10 @@
       </div>
     </div>
 
-    <div class="right-column">
+    <div class="right-column" *ngIf="observables.details">
       <app-owner-card
         [authorData]="author$ | async"
+        [price]="observables.details.price"
       ></app-owner-card>
     </div>
   </div>

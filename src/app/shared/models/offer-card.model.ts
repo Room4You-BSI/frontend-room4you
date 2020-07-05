@@ -4,6 +4,7 @@ export interface OfferCardColumnItemModel {
 }
 
 export interface OfferCardItemModel {
+  post_id: number;
   title: string;
   text: string;
   image: string;

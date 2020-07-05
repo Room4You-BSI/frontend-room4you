@@ -1,6 +1,6 @@
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
 
 import { tap } from 'rxjs/operators';
 
@@ -31,6 +31,12 @@ enum CustomBreakpoints {
 })
 export class HeaderComponent implements OnInit {
 
+  @ViewChild('userDropDown', {static: false}) userDropDownRef: ElementRef;
+  @ViewChild('userInfo', {static: false}) userInfoRef: ElementRef;
+  @ViewChild('userInfoMobile', {static: false}) userInfoMobileRef: ElementRef;
+  dropDownLeftOffset = 0;
+  dropDownTopOffset = 0;
+
   downMdSize: boolean;
   onlyMdSize: boolean;
   erro: HttpErrorResponse;
@@ -49,6 +55,30 @@ export class HeaderComponent implements OnInit {
     {text: 'Cadastre', link: '/register', hiddeIfLogged: true},
   ];
 
+  @HostListener('document:click', ['$event'])
+  clickout(event) {
+    if (this.logged) {
+      if (this.downMdSize) {
+        if (!this.userDropDownRef.nativeElement.contains(event.target)
+          && !this.userInfoMobileRef.nativeElement.contains(event.target)) {
+          this.showDropdown = false;
+        }
+      } else {
+        if (!this.userDropDownRef.nativeElement.contains(event.target)
+          && !this.userInfoRef.nativeElement.contains(event.target)) {
+          this.showDropdown = false;
+        }
+      }
+    }
+  }
+
+  @HostListener('window:scroll', ['$event'])
+  scrollHandler(event) {
+    if (this.logged) {
+      this.showDropdown = false;
+    }
+  }
+
   constructor(
     private breakpointObserver: BreakpointObserver,
     private authService: AuthService,
@@ -59,6 +89,7 @@ export class HeaderComponent implements OnInit {
       CustomBreakpoints.MD_DOWN,
       CustomBreakpoints.MD_ONLY,
     ]).pipe(tap(result => {
+      this.showDropdown = false;
       this.downMdSize = result.breakpoints[CustomBreakpoints.MD_DOWN];
       this.onlyMdSize = result.breakpoints[CustomBreakpoints.MD_ONLY];
       if (this.downMdSize) {
@@ -78,5 +109,20 @@ export class HeaderComponent implements OnInit {
 
   logout() {
     this.authService.logout();
+  }
+
+  toggleDropDown() {
+    if (!this.showDropdown) {
+      if (this.downMdSize) {
+        const offsets = this.userInfoMobileRef.nativeElement.getBoundingClientRect();
+        this.dropDownLeftOffset = Math.round(offsets.x) - 100;
+        this.dropDownTopOffset = window.scrollY + 64;
+      } else {
+        const offsets = this.userInfoRef.nativeElement.getBoundingClientRect();
+        this.dropDownLeftOffset = Math.round(offsets.x);
+        this.dropDownTopOffset = window.scrollY + 64;
+      }
+    }
+    this.showDropdown = !this.showDropdown;
   }
 }

@@ -95,8 +95,9 @@ mat-toolbar {
 
 .user-option-dropdown {
   position: absolute;
-  right: 225px;
   background-color: #f0f0f0;
+  z-index: 999;
+  top: 64px;
 
   ul {
     list-style: none;
@@ -117,4 +118,14 @@ mat-toolbar {
       }
     }
   }
+}
+
+.user-info-mobile {
+  position: absolute;
+  right: 11px;
+  top: 16px;
+}
+
+.r4u-d-none {
+  display: none !important;
 }

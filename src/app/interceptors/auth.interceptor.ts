@@ -19,9 +19,13 @@ export class AuthInterceptor implements HttpInterceptor {
 
     const backendUrl  = new RegExp(environment.backendBaseUrl);
 
-    if (backendUrl.test(req.url) && this.authService.getToken()) {
-    transformedReq = req.clone({ setHeaders: { Authorization: 'Bearer ' + this.authService.getToken() }});
+    if (backendUrl.test(req.url) && this.authService.isLoggedIn()) {
+      transformedReq = req.clone({ setHeaders: { Authorization: 'Bearer ' + this.authService.getToken() }});
     }
+
+    // if (!this.authService.isLoggedIn()) {
+    //   this.authService.logout();
+    // }
 
     return next.handle(transformedReq);
   }

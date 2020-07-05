@@ -39,16 +39,25 @@
         <ng-container *ngFor="let item of menuItems">
           <a mat-button *ngIf="!item.hiddeIfLogged || !logged" routerLinkActive="active-link" [routerLink]="item.link">{{ item.text }}</a>
         </ng-container>
-        <div (click)="showDropdown = !showDropdown" class="user-info-wrapper cursor-pointer" *ngIf="logged">
+        <div #userInfo (click)="toggleDropDown()" class="user-info-wrapper cursor-pointer" *ngIf="logged">
           <div class="user-photo" [ngStyle]="{'background-image': 'url(' + userImage + ')'}"></div>
           <div class="user-name-wrapper">{{ userName }}</div>
         </div>
       </div>
     </mat-grid-tile>
   </mat-grid-list>
+
+  <div [class.r4u-d-none]="!logged || !downMdSize" #userInfoMobile (click)="toggleDropDown()" class="user-info-wrapper cursor-pointer user-info-mobile">
+    <div class="user-photo" [ngStyle]="{'background-image': 'url(' + userImage + ')'}"></div>
+  </div>
 </mat-toolbar>
 
-<div class="user-option-dropdown" *ngIf="showDropdown && !downMdSize && logged">
+<div #userDropDown
+  [ngStyle]="{'left.px': dropDownLeftOffset, 'top.px': dropDownTopOffset}"
+  class="user-option-dropdown"
+  [hidden]="!showDropdown || !logged"
+  (mouseup)="this.showDropdown = false"
+>
   <ul>
     <li class="cursor-pointer"><a routerLink="/offers/my-posts-list">Meus posts</a></li>
     <li class="cursor-pointer"><a routerLink="/offers/favorite-list">Meus favoritos</a></li>

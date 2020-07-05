@@ -1,5 +1,10 @@
 import { AfterViewInit, Component, ElementRef, Input, OnDestroy, ViewChild } from '@angular/core';
 
+import { finalize, tap } from 'rxjs/operators';
+
+import { AuthService } from '../../services/auth.service';
+import { OfferService } from '../../services/offer.service';
+
 
 declare var $: any;
 declare var jQuery: any;
@@ -34,11 +39,8 @@ export class LightsliderComponent implements AfterViewInit, OnDestroy {
 
   @ViewChild('imageGallery', {static: true}) imageGallery: ElementRef;
 
-  @Input() images: string[] = [
-    'https://images.madeiramadeira.com.br/product/images/75801354-quarto-de-solteiro-completo-com-guarda-roupa-closet-painel-cabeceira-e-nicho-mov-siena-moveis-1_zoom-1500x1500.jpg',
-    'https://images.madeiramadeira.com.br/product/images/75801354-quarto-de-solteiro-completo-com-guarda-roupa-closet-painel-cabeceira-e-nicho-mov-siena-moveis-1_zoom-1500x1500.jpg',
-    'https://images.madeiramadeira.com.br/product/images/75801354-quarto-de-solteiro-completo-com-guarda-roupa-closet-painel-cabeceira-e-nicho-mov-siena-moveis-1_zoom-1500x1500.jpg',
-  ];
+  @Input() images: string[] = [];
+  @Input() id: any;
 
   @Input() title = 'Quarto São Paulo Tatuapé';
 
@@ -49,14 +51,22 @@ export class LightsliderComponent implements AfterViewInit, OnDestroy {
   @Input() sliderHeight = 290;
 
   slider;
+  favoriteLoading = false;
 
-  constructor() {
+  constructor(
+    private authService: AuthService,
+    private offerService: OfferService,
+  ) {
     if (typeof $ === 'undefined' && typeof jQuery !== 'undefined') {
       $ = jQuery;
     }
   }
 
   ngAfterViewInit(): void {
+    if (this.images.length === 0) {
+      this.images.push('https://via.placeholder.com/950/8B8B8B/477D82/?text=Room4You');
+    }
+
     this.slider = $(this.imageGallery.nativeElement).lightSlider({
       gallery: true,
       item: 1,
@@ -84,6 +94,22 @@ export class LightsliderComponent implements AfterViewInit, OnDestroy {
   nextSlide() {
     if (this.slider) {
       this.slider.goToNextSlide();
+    }
+  }
+
+  toggleFavorite(favorite) {
+    if (this.favoriteLoading || !this.authService.isLoggedIn()) { return; }
+    this.favoriteLoading = true;
+    if (favorite) {
+      this.offerService.removeFavorite(this.id).pipe(
+        tap(() => this.favorite = false),
+        finalize(() => this.favoriteLoading = false),
+      ).subscribe();
+    } else {
+      this.offerService.addToFavorite(this.id).pipe(
+        tap(() => this.favorite = true),
+        finalize(() => this.favoriteLoading = false),
+      ).subscribe();
     }
   }
 
