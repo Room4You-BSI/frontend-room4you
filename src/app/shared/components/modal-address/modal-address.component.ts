@@ -1,3 +1,4 @@
+import { BreakpointObserver } from '@angular/cdk/layout';
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
@@ -18,13 +19,23 @@ export interface DialogData {
 })
 export class ModalAddressComponent implements OnInit {
 
+  private readonly mobileSizeTxt = '(max-width: 549.99px)';
+  mobileSize = false;
+
   constructor(
+    private breakpointObserver: BreakpointObserver,
     public dialogRef: MatDialogRef<ModalAddressComponent>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData,
     private cepService: CepService,
   ) {}
 
   ngOnInit(): void {
+    this.breakpointObserver.observe([
+      this.mobileSizeTxt,
+    ]).pipe(tap(result => {
+      this.mobileSize = result.breakpoints[this.mobileSizeTxt];
+    })).subscribe();
+
     this.data.form.controls.cep.valueChanges.pipe(
       tap(value => {
         if (!value || (value.replace(/[^0-9]/, '')).length !== 8) { return; }

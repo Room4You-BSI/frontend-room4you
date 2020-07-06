@@ -26,7 +26,7 @@
     <!-- Search form block -->
     <mat-grid-tile *ngIf="!downMdSize && !onlyMdSize" colspan="6">
       <div id="search-input-wrapper" class="r4u-w-100">
-        <input type="text" placeholder="Pesquise aqui">
+        <input type="text" placeholder="Pesquise aqui" (keyup.enter)="search(searchControl.value)" [formControl]="searchControl">
         <mat-icon aria-hidden="false" aria-label="Search icon">search</mat-icon>
       </div>
     </mat-grid-tile>
@@ -40,7 +40,7 @@
           <a mat-button *ngIf="!item.hiddeIfLogged || !logged" routerLinkActive="active-link" [routerLink]="item.link">{{ item.text }}</a>
         </ng-container>
         <div #userInfo (click)="toggleDropDown()" class="user-info-wrapper cursor-pointer" *ngIf="logged">
-          <div class="user-photo" [ngStyle]="{'background-image': 'url(' + userImage + ')'}"></div>
+          <div class="user-photo" [style.background-image]="'url(' + userImage + ')'"></div>
           <div class="user-name-wrapper">{{ userName }}</div>
         </div>
       </div>

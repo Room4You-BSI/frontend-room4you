@@ -1,7 +1,7 @@
 <div id="main-container" [class.sizeLT800]="sizeLT800" [class.sizeLT600]="sizeLT600">
 
   <!-- FILTER -->
-  <mat-card class="item-card filter-sidebar" *ngIf="!sizeLT600">
+  <!-- <mat-card class="item-card filter-sidebar" *ngIf="!sizeLT600">
     <h2>Filtros</h2>
     <hr class="filter-divider">
 
@@ -39,45 +39,58 @@
     <div class="amenities-options">
       <mat-checkbox *ngFor="let amenity of amenityOptions" [formControl]="amenity.control">{{ amenity.label }}</mat-checkbox>
     </div>
-  </mat-card>
+  </mat-card> -->
 
 
 
   <div class="column2-wrapper">
 
-    <app-bottom-filter [hidden]="!sizeLT600" class="bottom-filter"></app-bottom-filter>
+    <ng-container *ngIf="offerCards && offerCards.length; else empty">
+      <!-- <app-bottom-filter [hidden]="!sizeLT600" class="bottom-filter"></app-bottom-filter> -->
 
-    <div class="column2-header">
+      <div class="column2-header">
 
-      <!-- BREADCRUMB -->
-      <div class="breadcrumb">
-        <span (click)="navigateTo('/home')" class="cursor-pointer">Home</span>
-        <span class="breadcrumb-separator">></span>
-        <span>{{ title }}</span>
+        <!-- BREADCRUMB -->
+        <div class="breadcrumb">
+          <span (click)="navigateTo('/home')" class="cursor-pointer">Home</span>
+          <span class="breadcrumb-separator">></span>
+          <span>{{ title }}</span>
+        </div>
+
+        <!-- TITLE -->
+        <h2>{{ title }}</h2>
+
+        <!-- SORTER -->
+        <div class="sorter cursor-pointer" (click)="sortOfferCars(offerCards)"><p>Ordenar</p></div>
       </div>
+      <mat-card class="item-card offers">
+        <div class="pagination-display">{{ offerCards.length }}-{{ offerCards.length }} resultados</div>
+        <div *ngFor="let card of offerCards; let last = last" class="offer-card-item" [class.last]="last">
+          <app-offer-card
+            [id]="card.post_id"
+            [title]="card.title"
+            [text]="card.text"
+            [image]="card.image"
+            [price]="card.price"
+            [rate]="card.rate"
+            [cidade]="card.cidade"
+            [estado]="card.estado"
+            [favorite]="card.favorite"
+            [attributesColumn1]="card.attributesColumn1"
+            [attributesColumn2]="card.attributesColumn2"
+          ></app-offer-card>
+        </div>
+      </mat-card>
+    </ng-container>
 
-      <!-- TITLE -->
-      <h2>{{ title }}</h2>
-
-      <!-- SORTER -->
-      <div class="sorter cursor-pointer" (click)="sortOfferCars(offerCards)"><p>Ordenar</p></div>
-    </div>
-    <mat-card class="item-card offers">
-      <div class="pagination-display">1-1000 resultados</div>
-      <div *ngFor="let card of offerCards; let last = last" class="offer-card-item" [class.last]="last">
-        <app-offer-card
-          [id]="card.post_id"
-          [title]="card.title"
-          [text]="card.text"
-          [image]="card.image"
-          [price]="card.price"
-          [rate]="card.rate"
-          [distance]="card.distance"
-          [favorite]="card.favorite"
-          [attributesColumn1]="card.attributesColumn1"
-          [attributesColumn2]="card.attributesColumn2"
-        ></app-offer-card>
-      </div>
-    </mat-card>
+    <!-- EMPTY STATE -->
+    <ng-template #empty>
+      <ng-container *ngIf="loaded">
+        <div class="empty-wrapper">
+          <mat-icon>power_off</mat-icon>
+          <p>Não há itens a serem listados</p>
+        </div>
+      </ng-container>
+    </ng-template>
   </div>
 </div>

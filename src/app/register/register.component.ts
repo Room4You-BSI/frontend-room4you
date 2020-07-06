@@ -1,11 +1,16 @@
-import { Component, OnInit } from '@angular/core';
-
-import { FormGroup, FormControl } from '@angular/forms';
-import { User } from '../users/user';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
-import { tap, catchError } from 'rxjs/operators';
+import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+
+import { Observable, throwError } from 'rxjs';
+import { catchError, tap } from 'rxjs/operators';
+
+import { environment } from '../../environments/environment.dev';
+import { AuthService } from '../shared/services/auth.service';
+import { User } from '../users/user';
+
+
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -16,8 +21,11 @@ export class RegisterComponent implements OnInit {
   showUploaded = false;
   erro: HttpErrorResponse;
 
-  constructor(private http: HttpClient,
-              private router: Router) { }
+  constructor(
+    private http: HttpClient,
+    private router: Router,
+    private authService: AuthService,
+  ) {}
 
   ngOnInit(): void {
     this.createRegisterForm(new User());
@@ -63,15 +71,15 @@ export class RegisterComponent implements OnInit {
     formData.append('aboutMe', aboutMe);
 
     console.warn(this.formUserRegister.value); // pode apertar enter para submeter
-    return this.http.post<any>('http://52.67.36.1/add_user', formData)
+    return this.http.post<any>(environment.backendBaseUrl + 'add_user', formData)
       .pipe(
         catchError((err) => {
           this.erro = err;
           return throwError(err);
         }),
         tap(response => {
-          this.router.navigate(['']),
-          console.log('response -> ', response);
+          this.router.navigate(['/home']),
+          this.authService.setLoginData(response.jwt);
         })
       );
   }

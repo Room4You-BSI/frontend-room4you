@@ -11,6 +11,8 @@ export interface OfferCardItemModel {
   price: number;
   rate: number;
   distance: string;
+  cidade: string;
+  estado: string;
   favorite: boolean;
   attributesColumn1: OfferCardColumnItemModel[];
   attributesColumn2: OfferCardColumnItemModel[];

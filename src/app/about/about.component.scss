@@ -1,5 +1,8 @@
+@import 'src/sass/custom-colors';
+
 #about {
   justify-self: center;
+  color: $r4u-gray-dark;
 
   .content {
     margin: 0 auto;
