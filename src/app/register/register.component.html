@@ -8,14 +8,14 @@
       <mat-divider></mat-divider><br>
 
       <mat-form-field appearance="outline" style="margin-bottom: -1.25em">
-        <mat-label>Email</mat-label>
+        <mat-label>Email de cadastro</mat-label>
         <input matInput
         class="form-control"
         type="email"
         name="email"
         id="email"
         formControlName="email"
-        placeholder="E-mail de cadastro"
+        autocomplete="on"
         required email>
       </mat-form-field>
 
@@ -108,6 +108,8 @@
       </div>
 
       <div class="showUploaded" *ngIf="showUploaded"> <i>*Foto carregada com sucesso! </i></div>
+      <div *ngIf="!showUploaded"> <br> </div>
+      <br><br>
     </div>
 
     <div class="right">
@@ -120,10 +122,11 @@
         <mat-label>Email para contato</mat-label>
         <input matInput
         class="form-control"
-        type="contactEmail"
+        type="email"
         name="contactEmail"
         id="contactEmail"
         formControlName="contactEmail"
+        autocomplete="new-email"
         required email>
       </mat-form-field>
 
@@ -179,7 +182,7 @@
   </button>
 
   <br>
-  <p>Ao clicar em cadastrar você concorda com nossos
+  <p class="terms">Ao clicar em cadastrar você concorda com nossos
     <a [routerLink]="['/terms-and-policy']" target="_blank">termos e políticas</a>
   </p>
 

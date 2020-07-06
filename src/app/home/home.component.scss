@@ -6,6 +6,7 @@
     .catcher {
       margin: 35px 0 0 0;
       text-align: center;
+      width: 100%;
 
       h1 {
         font-weight: 500;
@@ -17,103 +18,118 @@
 
       img{
         border: #D81E5B solid 1px;
-        border-radius: 50px;
+        border-radius: 5%;
+        width: 98%;
         max-width: 900px;
       }
     }
-  }
 
-  .options {
-    width: 100%;
-    background-color: #da4c64;
-
-    .inner-options {
+    .options {
       display: flex;
       justify-content: center;
+      width: 100%;
+      // width: 60%;
 
-      .block {
-        display: flex;
-        border: #17233092 solid 2px;
+      .inner-options {
+        width: 100%;
+        border-top-left-radius: 50%;
+        border-top-right-radius: 50%;
         background-color: #da4c64;
-        border-radius: 5%;
-        color: snow;
+
+        display: flex;
+        text-align: center;
         justify-content: center;
+
+        .block {
+          border-radius: 10%;
+          width: 100%;
+
+          box-shadow:inset 0px 34px 0px -15px #db5b70;
+          background-color:#da4c64;
+          border:1px solid #241d13;
+          display:inline-block;
+          cursor:pointer;
+          color:#ffffff;
+          font-family:Arial;
+          font-size:15px;
+          font-weight:bold;
+          padding:9px 23px;
+          text-decoration:none;
+          text-shadow:0px -1px 0px #7a2a1d;
+
+        }
+
+        .block:hover{
+          box-shadow:inset 0px 34px 0px -15px #e05169;
+          background-color:#e03854;
+        }
+
+        h3 {
+          margin: 0 auto;
+          padding: 5px;
+        }
+
+        img {
+          width: 30px;
+          padding: 15px;
+          justify-self: center;
+        }
+      }
+    }
+
+    .motivation {
+      display: flex;
+      justify-content: center;
+      width: 100%;
+
+      .inner-motivation{
+        padding: 30px 0;
+        width: 100%;
+
+        border-bottom-left-radius: 10%;
+        border-bottom-right-radius: 10%;
+        background-color: #D81E5B30;
+
+        display: flex;
         align-items: center;
+        justify-content: center;
+
+        .section{
+          width: 100%;
+          h2{
+            font-weight: 600;
+            margin: 10px 30px;
+          }
+          p{
+            font-weight: 400;
+            font-style: italic;
+            margin: 0 5px;
+          }
+        }
       }
 
-      .block:hover{
-        background-color: #d3334d;
-      }
+    }
 
-      h3 {
-        margin: 0 auto;
-        padding: 5px;
-      }
+    .signature {
+      margin-top: 50px;
+      text-align: center;
 
       img {
-        width: 30px;
-        padding: 15px;
+        width: 300px;
       }
     }
   }
 
-  .motivation {
-    width: 100%;
-    background-color: #D81E5B30;
-    padding: 30px 0;
 
-    .inner-motivation{
-
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      .section{
-        max-width: 400px;
-        h2{
-          font-weight: 600;
-          margin: 10px 30px;
-        }
-        p{
-          font-weight: 400;
-          font-style: italic;
-          margin: 0 5px;
-        }
-      }
-    }
-
-  }
-
-  .signature {
-    margin-top: 50px;
-    img {
-      width: 300px;
-    }
-  }
 
 }
 
-@media only screen and (min-width: 320px){
+@media only screen and (min-width: 320px) and (max-width: 768px) {
 
   #home{
     .content{
-
-      .catcher{
-        width: 320px;
-
-        img{
-          width: 312px;
-        }
-      }
-
       .options {
-
-        img{
-          justify-self: center;
-        }
-
         .inner-options{
-          text-align: center;
-
           .block{
             display: grid;
             font-weight: 400;
@@ -121,12 +137,12 @@
         }
       }
       .motivation{
-
         .inner-motivation{
 
           .section{
             display: grid;
             font-weight: 300;
+
             h2, p{
               font-size: medium;
               text-align: left;
@@ -139,7 +155,6 @@
 
       .signature {
         width: 320px;
-        text-align: center;
       }
     }
   }
@@ -149,24 +164,9 @@
 
   #home{
     .content{
-
-      .catcher{
-        width: 768px;
-
-        img{
-          width: 760px;
-        }
-      }
-
       .options {
-        width: 100%;
-
-        img{
-          justify-self: center;
-        }
-
         .inner-options{
-          text-align: center;
+          max-width: 900px;
 
           .block{
             display: grid;
@@ -174,15 +174,13 @@
             font-weight: 300;
 
           }
-
-
         }
       }
 
       .motivation{
-        width: 100%;
-
         .inner-motivation{
+          max-width: 900px;
+
           .section{
             display: grid;
             width: 256px;
@@ -200,7 +198,6 @@
 
       .signature {
         width: 768px;
-        text-align: center;
       }
     }
   }
