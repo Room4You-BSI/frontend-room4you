@@ -78,7 +78,7 @@ export class RegisterComponent implements OnInit {
           return throwError(err);
         }),
         tap(response => {
-          this.router.navigate(['/home']),
+          this.router.navigate(['/login']),
           this.authService.setLoginData(response.jwt);
         })
       );
