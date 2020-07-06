@@ -85,14 +85,16 @@ export class AdvertiseComponent implements OnInit {
 
   openAddressModal(): void {
     const dialogRef = this.dialog.open(ModalAddressComponent, {
-      width: '500px',
+      width: window.innerWidth > 500 ? '500px' : window.innerWidth + 'px',
       data: {form: this.step3Form.controls.addressForm}
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      this.step3Form.controls.addressForm = result;
-      this.addressControl.setValue(`Rua ${result.controls.place.value}, ${result.controls.number.value}
-        ${result.controls.neighborhood.value} - ${result.controls.city.value}-${result.controls.state.value}`);
+      if (result) {
+        this.step3Form.controls.addressForm = result;
+        this.addressControl.setValue(`Rua ${result.controls.place.value}, ${result.controls.number.value}
+          ${result.controls.neighborhood.value} - ${result.controls.city.value}-${result.controls.state.value}`);
+      }
     });
   }
 

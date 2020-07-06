@@ -16,8 +16,9 @@ export class OfferService {
     private http: HttpClient,
   ) {}
 
-  getOffers(): Observable<any> {
-    return this.http.get(`${environment.backendBaseUrl}posts`);
+  getOffers(search: string[] = []): Observable<any> {
+    const options = {params: {search: search.join(' ')}};
+    return this.http.get(`${environment.backendBaseUrl}posts`, !search.length ? {} : options);
   }
 
   getMyPosts(): Observable<any> {

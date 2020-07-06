@@ -4,12 +4,12 @@
   <h2>{{title}}</h2>
 
   <!-- RATE -->
-  <div class="rate-wrapper">
-    <ng-container *ngFor="let i of [0, 1, 2, 3, 4]">
+  <!-- <div class="rate-wrapper">
+    <ng-container *ngFor="let i of [0, 1, 2, 3, 4]"> -->
       <!-- <mat-icon class="cursor-pointer rate-icon" (click)="rate = i + 1" [class.rated]="rate > i" aria-hidden="false" aria-label="Rate star">grade</mat-icon> -->
-      <mat-icon class="cursor-pointer rate-icon" [class.rated]="rate > i" aria-hidden="false" aria-label="Rate star">grade</mat-icon>
+      <!-- <mat-icon class="cursor-pointer rate-icon" [class.rated]="rate > i" aria-hidden="false" aria-label="Rate star">grade</mat-icon>
     </ng-container>
-  </div>
+  </div> -->
 
   <!-- FAVORITE -->
   <mat-icon (click)="toggleFavorite(favorite)" class="cursor-pointer rated-favorite rate-icon" aria-hidden="false" aria-label="Favorite">{{favorite ? 'favorite' : 'favorite_border'}}</mat-icon>

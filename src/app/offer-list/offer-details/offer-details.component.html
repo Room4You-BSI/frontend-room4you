@@ -98,6 +98,21 @@
         <p>{{ observables.details.mobiliado ? 'Mobiliado' : 'Não mobiliado' }}</p>
       </div>
 
+      <hr>
+      <h3 class="card-inner-title">Endereço</h3>
+
+      <div class="room-attribute">
+        <mat-icon
+          [class.available]="true"
+          fontSet="material-icons-outlined"
+          aria-hidden="false"
+          aria-label="Location pin"
+        >
+          place
+        </mat-icon>
+        <p>{{ 'Rua ' + observables.details.address + ', ' + observables.details.n_casa + ', ' + observables.details.city + '-' + observables.details.state }}</p>
+      </div>
+
       <div class="map-wrapper" *ngIf="address">
         <app-map
           [address]="address"

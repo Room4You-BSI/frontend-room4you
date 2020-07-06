@@ -1,9 +1,17 @@
-.form-row {
-  display: flex;
-  justify-content: space-around;
+.modal-wrapper {
+  .form-row {
+    display: flex;
+    justify-content: space-around;
 
-  &.form-row-last {
-    justify-content: start;
-    margin-left: 23px;
+    &.form-row-last {
+      justify-content: start;
+      margin-left: 23px;
+    }
+  }
+
+  &.mobile {
+    .form-row {
+      flex-direction: column;
+    }
   }
 }

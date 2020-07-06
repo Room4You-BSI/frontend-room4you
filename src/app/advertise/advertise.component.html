@@ -92,13 +92,6 @@
           <h2>Descrição</h2>
         </div>
 
-        <div class="step-row radio-group-container vertical-center">
-          <div class="r4u-w-100">
-            <p>Descreva o quarto</p>
-            <textarea matInput placeholder="Insira uma descrição" [formControl]="step3Form.controls.description"></textarea>
-          </div>
-        </div>
-
         <div class="step-row radio-group-container">
           <!-- Title -->
           <mat-form-field>
@@ -108,9 +101,17 @@
 
           <!-- Preço -->
           <mat-form-field>
-            <mat-label>Preço</mat-label>
+            <mat-label>Aluguel</mat-label>
             <input id="price" matInput type="number" [formControl]="step3Form.controls.price">
           </mat-form-field>
+        </div>
+
+        <!-- Descrição -->
+        <div class="step-row radio-group-container vertical-center">
+          <div class="r4u-w-100">
+            <p>Descreva o quarto</p>
+            <textarea matInput placeholder="Insira uma descrição" [formControl]="step3Form.controls.description"></textarea>
+          </div>
         </div>
 
         <!-- Endereço -->

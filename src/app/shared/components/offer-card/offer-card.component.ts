@@ -22,7 +22,9 @@ export class OfferCardComponent implements OnInit {
   @Input() image: string;
   @Input() price: number;
   @Input() rate: number;
-  @Input() distance: string;
+  @Input() distance?: string;
+  @Input() cidade: string;
+  @Input() estado: string;
   @Input() favorite = false;
   @Input() attributesColumn1: OfferCardColumnItemModel[];
   @Input() attributesColumn2: OfferCardColumnItemModel[];

@@ -38,11 +38,16 @@ export class AuthService {
 
     return this.http.post<any>(`${environment.backendBaseUrl}get_profile`, formData).pipe(
       tap(res => {
-        localStorage.setItem(this.TOKEN_KEY, res.jwt);
-        this.token = res.jwt;
-        this.loginSubject.next(true);
+        this.setLoginData(res.jwt);
       }),
     );
+  }
+
+  setLoginData(token: string) {
+    localStorage.setItem(this.TOKEN_KEY, token);
+    this.token = token;
+    this.decodedToken = null;
+    this.loginSubject.next(true);
   }
 
   logout() {

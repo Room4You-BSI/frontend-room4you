@@ -14,7 +14,7 @@
     <ng-container *ngIf="sizeLT800">
       <ng-container *ngFor="let i of [0, 1, 2, 3, 4]">
         <!-- <mat-icon class="cursor-pointer rate-icon" (click)="rate = i + 1" [class.rated]="rate > i" aria-hidden="false" aria-label="Rate star">grade</mat-icon> -->
-        <mat-icon class="cursor-pointer rate-icon" [class.rated]="rate > i" aria-hidden="false" aria-label="Rate star">grade</mat-icon>
+        <!-- <mat-icon class="cursor-pointer rate-icon" [class.rated]="rate > i" aria-hidden="false" aria-label="Rate star">grade</mat-icon> -->
       </ng-container>
 
       <mat-icon (click)="toggleFavorite(favorite)" class="cursor-pointer rated-favorite rate-icon under-title" aria-hidden="false" aria-label="Favorite">{{favorite ? 'favorite' : 'favorite_border'}}</mat-icon>
@@ -65,7 +65,7 @@
       <div class="card-content-icons-column">
         <div>
           <mat-icon fontSet="material-icons-outlined" class="place" aria-hidden="false" aria-label="Location pin">place</mat-icon>
-          <p>{{ distance }}</p>
+          <p>{{ cidade + '-' + estado }}</p>
         </div>
       </div>
     </div>
@@ -75,7 +75,7 @@
   <div class="icons-wrapper">
     <ng-container *ngFor="let i of [0, 1, 2, 3, 4]">
       <!-- <mat-icon class="cursor-pointer rate-icon" (click)="rate = i + 1" [class.rated]="rate > i" aria-hidden="false" aria-label="Rate star">grade</mat-icon> -->
-      <mat-icon class="cursor-pointer rate-icon" [class.rated]="rate > i" aria-hidden="false" aria-label="Rate star">grade</mat-icon>
+      <!-- <mat-icon class="cursor-pointer rate-icon" [class.rated]="rate > i" aria-hidden="false" aria-label="Rate star">grade</mat-icon> -->
     </ng-container>
 
     <mat-icon (click)="toggleFavorite(favorite)" class="cursor-pointer rated-favorite rate-icon" aria-hidden="false" aria-label="Favorite">{{favorite ? 'favorite' : 'favorite_border'}}</mat-icon>

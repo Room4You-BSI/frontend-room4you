@@ -1,8 +1,11 @@
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
+import { FormControl } from '@angular/forms';
 
 import { tap } from 'rxjs/operators';
+
+import { GlobalEvents } from '@shared/utils';
 
 import { AuthService } from '../../services/auth.service';
 
@@ -54,6 +57,8 @@ export class HeaderComponent implements OnInit {
     {text: 'Login', link: '/login', hiddeIfLogged: true},
     {text: 'Cadastre', link: '/register', hiddeIfLogged: true},
   ];
+
+  searchControl = new FormControl(null);
 
   @HostListener('document:click', ['$event'])
   clickout(event) {
@@ -124,5 +129,9 @@ export class HeaderComponent implements OnInit {
       }
     }
     this.showDropdown = !this.showDropdown;
+  }
+
+  search(key) {
+    GlobalEvents.get('search').emit(key.split(' '));
   }
 }
